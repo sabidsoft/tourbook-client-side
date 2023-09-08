@@ -1,11 +1,11 @@
-// importing modules
+// imported modules
 import { FormEvent, ChangeEvent, useState, useEffect } from "react";
 import { useSignUpMutation } from "../features/api/authApiEndpoints";
 import { useNavigate } from "react-router-dom";
 import Loader from "../components/Loader";
 import FormCard from "../components/FormCard";
 
-// type of initialState object
+// interface of initialState object
 interface InitialState {
     name: string;
     email: string;
@@ -13,7 +13,7 @@ interface InitialState {
     confirmPassword: string;
 }
 
-// initialState object
+// object of initialState
 const initialState: InitialState = {
     name: "",
     email: "",
@@ -49,7 +49,7 @@ export default function SignUp() {
         }
     }
 
-    // if no error occured, navigate to the Home page when onSubmit event fired
+    // when onSubmit event fired and no error occured, navigate to the Home page
     useEffect(() => {
         if (isSuccess) {
             navigate("/")
@@ -64,11 +64,12 @@ export default function SignUp() {
         }
     }, [isSuccess, error, navigate])
 
-    // loading when delay to data fetching
+    // return Loader component during to data fetching
     if (isLoading) {
         return <Loader />
     }
 
+    // return signup FormCard component after data fetching
     return (
         <FormCard
             name={name}
