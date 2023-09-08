@@ -1,6 +1,6 @@
 // imported modules
 import { FormEvent, ChangeEvent, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSignInMutation } from "../features/api/authApiEndpoints";
 import Loader from "../components/Loader";
 import FormCard from "../components/FormCard";
@@ -21,6 +21,7 @@ export default function SignIn() {
     const [formValue, setFormValue] = useState(initialState);
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
+    const location = useLocation();
 
     const [signIn, { isSuccess, isLoading, error }] = useSignInMutation();
 
@@ -31,7 +32,7 @@ export default function SignIn() {
         e.preventDefault();
         setErrorMessage("");
 
-        signIn({ email, password })
+        signIn({ email, password });
     }
 
     // handling input elements values
@@ -43,7 +44,7 @@ export default function SignIn() {
     // when onSubmit event fired and no error occured, navigate to the Home page
     useEffect(() => {
         if (isSuccess) {
-            navigate("/")
+            navigate(location.state?.from?.pathname || "/", { replace: true })
         } else {
             if (error) {
                 if ("status" in error) {
@@ -53,7 +54,7 @@ export default function SignIn() {
                 }
             }
         }
-    }, [isSuccess, error, navigate])
+    }, [isSuccess, error, navigate, location.state?.from?.pathname])
 
     // return Loader component during to data fetching
     if (isLoading) {

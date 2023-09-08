@@ -25,16 +25,16 @@ export const authApiEndpoints = apiSlice.injectEndpoints({
                 try {
                     const response = await queryFulfilled;
 
-                    // // storing on localstorage
-                    // localStorage.setItem('auth', JSON.stringify({
-                    //     token: response.data.token,
-                    //     user: response.data.user
-                    // }));
+                    // storing on localstorage
+                    localStorage.setItem('auth', JSON.stringify({
+                        token: response.data.payload.token,
+                        user: response.data.payload.user
+                    }));
 
                     // storing on redux store
                     dispatch(userLoggedIn({
-                        token: response.data.token,
-                        user: response.data.user
+                        token: response.data.payload.token,
+                        user: response.data.payload.user
                     }));
                 }
                 catch (err) { }
@@ -52,16 +52,16 @@ export const authApiEndpoints = apiSlice.injectEndpoints({
                 try {
                     const response = await queryFulfilled;
 
-                    // // storing on localstorage
-                    // localStorage.setItem('auth', JSON.stringify({
-                    //     token: response.data.token,
-                    //     user: response.data.user
-                    // }));
+                    // storing on localstorage
+                    localStorage.setItem('auth', JSON.stringify({
+                        token: response.data.payload.token,
+                        user: response.data.payload.user
+                    }));
 
                     // storing on redux store
                     dispatch(userLoggedIn({
-                        token: response.data.token,
-                        user: response.data.user
+                        token: response.data.payload.token,
+                        user: response.data.payload.user
                     }));
                 }
                 catch (err) { }
