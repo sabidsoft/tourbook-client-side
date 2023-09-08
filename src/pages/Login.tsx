@@ -1,6 +1,6 @@
 import { FormEvent, ChangeEvent } from "react";
 import { useState } from "react";
-import loginImage from "../images/Lock-512.webp"
+import loginImage from "../assets/images/Lock-512.webp"
 import { Link } from "react-router-dom";
 import Input from "../components/Input";
 import FormSubmitButton from "../components/FormSubmitButton";
