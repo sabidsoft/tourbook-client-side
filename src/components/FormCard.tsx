@@ -16,14 +16,22 @@ interface FormCardProps {
 }
 
 export default function FormCard({
-    name, email, password, confirmPassword, formName, errorMessage, onInputChange, onFormSubmit }: FormCardProps) {
+    name,
+    email,
+    password,
+    confirmPassword,
+    formName,
+    errorMessage,
+    onInputChange,
+    onFormSubmit
+}: FormCardProps) {
 
     const haveAccount = "Already have an account? Sign In";
     const haveNotAccount = "Don't have an account? Sign Up";
 
     return (
-        <div className="pt-36 pb-8">
-            <div className="w-[90%] sm:w-[500px] mx-auto py-5 px-6 shadow-md rounded-lg">
+        <div className="mt-36 pb-8">
+            <div className="w-[90%] sm:w-[470px] mx-auto py-5 px-6 shadow-md rounded-lg">
                 <div className="flex flex-col justify-center items-center mb-8">
                     <img
                         src={formImage}

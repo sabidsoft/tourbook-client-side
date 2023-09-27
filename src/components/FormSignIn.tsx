@@ -11,7 +11,14 @@ interface FormSignInProps {
     onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function FormSignIn({ email, password, errorMessage, onFormSubmit, onInputChange }: FormSignInProps) {
+export default function FormSignIn({
+    email,
+    password,
+    errorMessage,
+    onFormSubmit,
+    onInputChange
+}: FormSignInProps) {
+    
     return (
         <form onSubmit={onFormSubmit}>
             <FormInput
@@ -29,9 +36,7 @@ export default function FormSignIn({ email, password, errorMessage, onFormSubmit
                 onChange={onInputChange}
             />
             {errorMessage && <ErrorMessage message={errorMessage} />}
-            <FormSubmitButton
-                value="SIGN IN"
-            />
+            <FormSubmitButton value="SIGN IN" />
         </form>
     )
 }

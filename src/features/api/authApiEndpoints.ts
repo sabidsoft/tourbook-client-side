@@ -18,7 +18,7 @@ export const authApiEndpoints = apiSlice.injectEndpoints({
             query: (data: SignUp) => ({
                 url: '/api/v1/users/signup',
                 method: 'POST',
-                body: data,
+                body: data
             }),
 
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {
@@ -45,7 +45,7 @@ export const authApiEndpoints = apiSlice.injectEndpoints({
             query: (data: SignIn) => ({
                 url: '/api/v1/users/signin',
                 method: 'POST',
-                body: data,
+                body: data
             }),
 
             async onQueryStarted(arg, { queryFulfilled, dispatch }) {

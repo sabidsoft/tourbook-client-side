@@ -31,21 +31,51 @@ export default function Header() {
                             width={48}
                             height={48}
                         />
-                        <p className="logo_text text-[#404756] text-xl ml-2">Tourbook</p>
+                        <p className="logo_text text-[#404756] font-bold text-2xl ml-2">Tourbook</p>
                     </Link>
 
                     {
                         user ? (
                             <div>
-                                <Link to='/' className="text-[#404756] mr-4">Home</Link>
-                                <Link to='/add-tour' className="text-[#404756] mr-4">Add Tour</Link>
-                                <Link to='/dashboard' className="text-[#404756] mr-4">Dashboard</Link>
-                                <button onClick={logout} className="text-[#404756] mr-4">Logout</button>
+                                <Link
+                                    to='/'
+                                    className="text-[#404756] font-medium text-lg mr-8"
+                                >
+                                    Home
+                                </Link>
+                                <Link
+                                    to='/add-tour'
+                                    className="text-[#404756] font-medium text-lg mr-8"
+                                >
+                                    Add Tour
+                                </Link>
+                                <Link
+                                    to='/dashboard'
+                                    className="text-[#404756] font-medium text-lg mr-8"
+                                >
+                                    Dashboard
+                                </Link>
+                                <button
+                                    onClick={logout}
+                                    className="text-[#404756] font-medium text-lg mr-8"
+                                >
+                                    Logout
+                                </button>
                             </div>
                         ) : (
                             <div>
-                                <Link to='/' className="text-[#404756] mr-4">Home</Link>
-                                <Link to='/signin' className="text-[#404756] mr-4">Login</Link>
+                                <Link
+                                    to='/'
+                                    className="text-[#404756] font-medium text-lg mr-8"
+                                >
+                                    Home
+                                </Link>
+                                <Link
+                                    to='/signin'
+                                    className="text-[#404756] font-medium text-lg mr-8"
+                                >
+                                    Login
+                                </Link>
                             </div>
                         )
                     }
@@ -62,7 +92,7 @@ export default function Header() {
                             width={30}
                             height={30}
                         />
-                        <p className="logo_text text-[#404756] text-xl ml-2">Navbar</p>
+                        <p className="logo_text text-[#404756] font-bold text-2xl ml-2">Tourbook</p>
                     </Link>
 
                     {isMenuOpen ? (
@@ -88,27 +118,27 @@ export default function Header() {
                             <Link
                                 to='/'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
-                                className="text-[#404756] text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Home
                             </Link>
                             <Link
                                 to='/add-tour'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
-                                className="text-[#404756] text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Add Tour
                             </Link>
                             <Link
                                 to='/dashboard'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
-                                className="text-[#404756] text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Dashboard
                             </Link>
                             <button
                                 onClick={logout}
-                                className="text-[#404756] text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Logout
                             </button>
@@ -118,14 +148,14 @@ export default function Header() {
                             <Link
                                 to='/'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
-                                className="text-[#404756] text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Home
                             </Link>
                             <Link
                                 to='/signin'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
-                                className="text-[#404756] text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Login
                             </Link>

@@ -23,18 +23,22 @@ const initialState: InitialState = {
 
 // SignUp component
 export default function SignUp() {
-    const [formValue, setFormValue] = useState(initialState);
+    const [formData, setFormData] = useState(initialState);
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
     const [signUp, { isSuccess, isLoading, error }] = useSignUpMutation();
 
-    const { name, email, password, confirmPassword } = formValue;
+    const { name, email, password, confirmPassword } = formData;
 
     // handling input elements values
     const onInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target;
-        setFormValue({ ...formValue, [name]: value });
+
+        setFormData({
+            ...formData,
+            [name]: value
+        });
     }
 
     // handling form submit

@@ -1,0 +1,1 @@
+export const inputStyle = "w-full block mb-5 px-3 py-2 border rounded focus:outline-none focus:border-[#267CB5]";

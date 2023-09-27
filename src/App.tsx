@@ -6,9 +6,15 @@ import Header from "./components/Header";
 import AddTour from "./pages/AddTour";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./components/PrivateRoute";
+import useInitialAuthCheck from "./hooks/useInitialAuthCheck";
+import Loader from "./components/Loader";
 
 export default function App() {
-  return (
+  const initialAuthChecked = useInitialAuthCheck();
+
+  return !initialAuthChecked ? (
+    <Loader />
+  ) : (
     <Router>
       <Header />
       <Routes>
@@ -19,5 +25,5 @@ export default function App() {
         <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
       </Routes>
     </Router>
-  );
+  )
 }

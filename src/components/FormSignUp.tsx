@@ -13,7 +13,16 @@ interface FormSignUpProps {
     onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-export default function FormSignUp({ name, email, password, confirmPassword, errorMessage, onFormSubmit, onInputChange }: FormSignUpProps) {
+export default function FormSignUp({
+    name,
+    email,
+    password,
+    confirmPassword,
+    errorMessage,
+    onFormSubmit,
+    onInputChange
+}: FormSignUpProps) {
+
     return (
         <form onSubmit={onFormSubmit}>
             <FormInput

@@ -18,14 +18,14 @@ const initialState: InitialState = {
 }
 
 export default function SignIn() {
-    const [formValue, setFormValue] = useState(initialState);
+    const [formData, setFormData] = useState(initialState);
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
     const location = useLocation();
 
     const [signIn, { isSuccess, isLoading, error }] = useSignInMutation();
 
-    const { email, password } = formValue;
+    const { email, password } = formData;
 
     // handling form submit
     const onFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
@@ -38,7 +38,11 @@ export default function SignIn() {
     // handling input elements values
     const onInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
         const { name, value } = e.target;
-        setFormValue({ ...formValue, [name]: value });
+        
+        setFormData({
+            ...formData,
+            [name]: value
+        });
     }
 
     // when onSubmit event fired and no error occured, navigate to the Home page
@@ -48,7 +52,9 @@ export default function SignIn() {
         } else {
             if (error) {
                 if ("status" in error) {
-                    const errMsgJSONString = 'error' in error ? error.error : JSON.stringify(error.data);
+                    const errMsgJSONString = 'error' in error ?
+                        error.error : JSON.stringify(error.data);
+
                     const errMsgJSObj = JSON.parse(errMsgJSONString);
                     setErrorMessage(errMsgJSObj.message);
                 }
