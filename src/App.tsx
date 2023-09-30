@@ -1,13 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import SignUp from "./pages/SignUp";
-import SignIn from "./pages/SignIn";
-import Header from "./components/Header";
-import AddTour from "./pages/AddTour";
-import Dashboard from "./pages/Dashboard";
-import PrivateRoute from "./components/PrivateRoute";
+import Home from "./pages/home/Home";
+import SignUp from "./pages/signUp/SignUp";
+import SignIn from "./pages/signIn/SignIn";
+import Header from "./components/header/Header";
+import AddTour from "./pages/addTour/AddTour";
+import Dashboard from "./pages/dashboard/Dashboard";
+import PrivateRoute from "./components/privateRoute/PrivateRoute";
 import useInitialAuthCheck from "./hooks/useInitialAuthCheck";
-import Loader from "./components/Loader";
+import Loader from "./components/common/loader/Loader";
+import SingleTour from "./pages/singleTour/SingleTour";
 
 export default function App() {
   const initialAuthChecked = useInitialAuthCheck();
@@ -19,6 +20,7 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/tours/:tourId" element={<SingleTour />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/add-tour" element={<PrivateRoute><AddTour /></PrivateRoute>} />
