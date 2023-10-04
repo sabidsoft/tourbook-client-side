@@ -22,7 +22,6 @@ export default function DashboardCard({ tour }: DashboardCardProps) {
     if (isError)
         return <ErrorMessage message="There is an error occured!" />
 
-
     return (
         <div key={_id} className="flex flex-col md:flex-row shadow-md rounded mb-4">
             <div className="md:w-[250px] md:h-[150px] grow-0">

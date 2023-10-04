@@ -10,6 +10,7 @@ import useInitialAuthCheck from "./hooks/useInitialAuthCheck";
 import Loader from "./components/common/loader/Loader";
 import SingleTour from "./pages/singleTour/SingleTour";
 import EditTour from "./pages/editTour/EditTour";
+import NotFound from "./pages/notFound/NotFound";
 
 export default function App() {
   const initialAuthChecked = useInitialAuthCheck();
@@ -27,6 +28,7 @@ export default function App() {
         <Route path="/add-tour" element={<PrivateRoute><AddTour /></PrivateRoute>} />
         <Route path="/edit-tour/:tourId" element={<PrivateRoute><EditTour /></PrivateRoute>} />
         <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   )
