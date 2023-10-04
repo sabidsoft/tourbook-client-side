@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
     reducerPath: 'tourbookApi',
+    tagTypes: ['Tours', 'Tour', 'ToursByUser'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8080',
     }),
@@ -10,14 +11,14 @@ export const apiSlice = createApi({
 
 
 
-
-
-// // with prepareHeaders
+// // with prepareHeaders and keepUnusedDataFor
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-// import { RootState } from "../../app/store"
+// import { RootState } from '../../../app/store';
 
 // export const apiSlice = createApi({
 //     reducerPath: 'tourbookApi',
+//     tagTypes: ['Tours', 'Tour'],
+//     keepUnusedDataFor: 600,
 //     baseQuery: fetchBaseQuery({
 //         baseUrl: 'http://localhost:8080',
 //         prepareHeaders: async (headers, { getState }) => {
@@ -30,3 +31,4 @@ export const apiSlice = createApi({
 //     }),
 //     endpoints: (builder) => ({}),
 // })
+
