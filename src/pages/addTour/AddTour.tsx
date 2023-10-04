@@ -3,6 +3,7 @@ import AddTourForm from "../../components/forms/addTourForm/AddTourForm";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/common/loader/Loader";
 import { useCreateTourMutation } from "../../redux/features/api/tourApi/tourApi";
+import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 
 export default function AddTour() {
     const [title, setTitle] = useState<string>("");
@@ -12,7 +13,7 @@ export default function AddTour() {
     const [tags, setTags] = useState<string[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
 
-    const [createTour, { data, isLoading, error }] = useCreateTourMutation();
+    const [createTour, { data, isLoading, isError, error }] = useCreateTourMutation();
     const navigate = useNavigate();
 
     // title handler
@@ -37,7 +38,7 @@ export default function AddTour() {
         setTagInput(e.target.value);
     }
 
-    // tags handlers start
+    // handle add tag
     const addTag = (e: KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter" || e.key === "," || e.key === " ") {
             e.preventDefault();
@@ -56,7 +57,7 @@ export default function AddTour() {
                 if (trimmedTag.length < 3)
                     return setErrorMessage("Tag name is too short.");
 
-                if (tags.length > 3)
+                if (tags.length >= 5)
                     return setErrorMessage("Maximum 3 tags allowed. Remove one tag to add another tag.");
 
                 setTags([...tags, trimmedTag]);
@@ -66,20 +67,26 @@ export default function AddTour() {
         }
     }
 
+    // handle remove tag
     const removeTag = (removalTag: string) => {
         const updatedTags = tags.filter(tag => tag !== removalTag);
         setTags(updatedTags);
         setErrorMessage("");
     }
-    // tags handlers end
 
     // form submit handler
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
         // form validation
-        if (!title || !description || !image)
-            return setErrorMessage('Please fill out all fields correctly.');
+        if (!title)
+            return setErrorMessage('Please enter title.');
+
+        if (!description)
+            return setErrorMessage('Please enter description.');
+
+        if (!image)
+            return setErrorMessage('Please select an image.');
 
         if (tags.length < 1)
             return setErrorMessage("Minimum a tag required.");
@@ -94,7 +101,7 @@ export default function AddTour() {
         const formData = new FormData();
         formData.append("title", title);
         formData.append("description", description);
-        formData.append("image", image as File);
+        formData.append("image", image);
         formData.append("tags", JSON.stringify(tags));
 
         createTour(formData);
@@ -111,6 +118,9 @@ export default function AddTour() {
 
     if (isLoading)
         return <Loader />;
+
+    if (isError)
+        return <ErrorMessage message="There is an error occured!" />;
 
     return (
         <AddTourForm

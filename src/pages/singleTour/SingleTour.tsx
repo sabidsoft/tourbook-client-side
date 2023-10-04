@@ -47,7 +47,7 @@ export default function SingleTour() {
                 <LuCalendarDays size={24} />
                 <span className="ml-2">{moment(tour?.createdAt).fromNow()}</span>
             </div>
-            <p className="pb-8">
+            <p className="pb-8 text-justify">
                 {tour?.description}
             </p>
         </div>

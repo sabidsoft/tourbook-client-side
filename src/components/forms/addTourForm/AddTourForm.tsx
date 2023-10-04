@@ -1,7 +1,7 @@
 import { inputStyle } from "../../../assets/styles/inputStyle";
 import FormErrorMessage from "../ui/formErrorMessage/FormErrorMessage";
 import FormSubmitButton from "../ui/formSubmitButton/FormSubmitButton";
-import TagChip from "../ui/formTagChip/FormTagChip";
+import FormTagChip from "../ui/formTagChip/FormTagChip";
 import { AddTourFormProps } from "./types";
 
 export default function AddTourForm({
@@ -21,8 +21,8 @@ export default function AddTourForm({
 }: AddTourFormProps) {
 
     return (
-        <div className="mt-36 pb-8">
-            <div className="w-[90%] sm:w-[470px] mx-auto py-5 px-6 shadow-md rounded-lg">
+        <div className="mt-24 pb-8">
+            <div className="w-[90%] sm:w-[570px] mx-auto py-5 px-6 shadow-md rounded-lg">
                 <div className="flex flex-col justify-center items-center mb-8">
                     <h2 className="font-medium text-2xl text-[#6B6F70]">
                         Add Tour
@@ -37,6 +37,7 @@ export default function AddTourForm({
                         onChange={handleTitleChange}
                         className={inputStyle}
                     />
+
                     <textarea
                         placeholder="Enter Description"
                         rows={5}
@@ -47,31 +48,37 @@ export default function AddTourForm({
                     >
                         {description}
                     </textarea>
-                    <div>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            required
-                            onChange={handleImageChange}
-                            className={inputStyle}
-                        />
-                    </div>
 
-                    {/* {image && (
+                    <label
+                        htmlFor="image"
+                        className="border inline-block mb-5 py-2 px-3 rounded-lg"
+                    >
+                        Select Image
+                    </label>
+                    <input
+                        id="image"
+                        type="file"
+                        accept="image/*" // Use this attribute to specify that only image files can be selected
+                        onChange={handleImageChange}
+                        className={`${inputStyle} hidden`}
+                    />
+
+                    {image && (
                         <img
-                            src={image}
+                            src={URL.createObjectURL(image)}
                             alt="Selected"
                             className="w-full h-52 object-cover mb-5 rounded-lg"
                         />
-                    )} */}
+                    )}
 
                     <div className="flex flex-wrap gap-2">
                         {tags.map(tag => (
-                            <TagChip
+                            <FormTagChip
                                 key={tag}
                                 tag={tag}
                                 removeTag={removeTag} />
                         ))}
+
                         <input
                             type="text"
                             placeholder="Add tags..."

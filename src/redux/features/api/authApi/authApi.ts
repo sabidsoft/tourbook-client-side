@@ -4,8 +4,8 @@ import { SignIn, SignUp } from "./types";
 
 export const authApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        signUp: builder.mutation<any, SignUp>({                      // <any, FormData> = <ReturnValueType, ArgumentTypeHere>
-            query: (data) => ({                                      // If there is no argument, use void
+        signUp: builder.mutation<any, SignUp>({
+            query: (data) => ({
                 url: '/api/v1/users/signup',
                 method: 'POST',
                 body: data

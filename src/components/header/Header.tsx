@@ -23,7 +23,7 @@ export default function Header() {
         <nav>
             {/* Desktop Navigation */}
             <div className="bg-[#F3F4F6]">
-                <div className="w-[100%] sm:w-[80%] mx-auto hidden sm:flex justify-between items-center py-4">
+                <div className="w-[100%] md:w-[80%] mx-auto hidden md:flex justify-between items-center py-4">
                     <Link to="/" className="flex items-center">
                         <img
                             src={logo}
@@ -83,7 +83,7 @@ export default function Header() {
             </div>
 
             {/* Mobile Navigation */}
-            <div className="sm:hidden bg-[#F3F4F6]">
+            <div className="md:hidden bg-[#F3F4F6]">
                 <div className="flex justify-between items-center px-4 py-4">
                     <Link to='/' className="flex items-center">
                         <img

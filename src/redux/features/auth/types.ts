@@ -1,9 +1,12 @@
 export interface User {
-    name: string,
-    email: string
+    _id: string;
+    name: string;
+    email: string;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface InitialState {
-    token: string | null,
-    user: User | null,
+    token: string | null;
+    user: User | null;
 }
