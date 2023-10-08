@@ -11,7 +11,8 @@ import Loader from "./components/common/loader/Loader";
 import SingleTour from "./pages/singleTour/SingleTour";
 import EditTour from "./pages/editTour/EditTour";
 import NotFound from "./pages/notFound/NotFound";
-import SearchResult from "./pages/searchResult/SearchResult";
+import ToursBySearch from "./pages/toursBySearch/ToursBySearch";
+import ToursByTagName from "./pages/toursByTagName/ToursByTagName";
 
 export default function App() {
   const initialAuthChecked = useInitialAuthCheck();
@@ -23,7 +24,8 @@ export default function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/search" element={<SearchResult />} />
+        <Route path="/tours/search" element={<ToursBySearch />} />
+        <Route path="/tours/tag-name/:tagName" element={<ToursByTagName />} />
         <Route path="/tours/:tourId" element={<SingleTour />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />

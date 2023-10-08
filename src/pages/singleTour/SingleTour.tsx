@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loader from "../../components/common/loader/Loader";
 import { useGetTourQuery } from "../../redux/features/api/tourApi/tourApi";
 import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
@@ -25,16 +25,15 @@ export default function SingleTour() {
                 className="w-full h-[600px] object-cover"
             />
             <div className="pt-2">
-                {tour?.tags.length !== 0 && tour?.tags.map((tag) => {
-                    return (
-                        <span
-                            key={tag}
-                            className="inline-block mr-1 text-[#7D7670]"
-                        >
-                            {`#${tag.toLowerCase()}`}
-                        </span>
-                    )
-                })}
+                {tour?.tags.length !== 0 && tour?.tags.map(tag => (
+                    <Link
+                        to={`/tours/tag-name/${tag}`}
+                        key={tag}
+                        className="inline-block mr-1 text-[#267CB5] hover:text-[#2e5f80] hover:underline"
+                    >
+                        {`#${tag.toLowerCase()}`}
+                    </Link>
+                ))}
             </div>
             <h2 className="text-center text-3xl text-[#38404C] font-bold py-8">
                 {tour?.title}

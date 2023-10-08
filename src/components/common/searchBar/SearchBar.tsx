@@ -20,7 +20,7 @@ export default function SearchBar({
                 type="search"
                 value={searchText}
                 onChange={handleTitleChange}
-                placeholder="Search tour here..."
+                placeholder="Search tour here by tour title..."
                 className="
                         w-[50%]
                         inline-block

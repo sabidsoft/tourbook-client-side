@@ -37,11 +37,11 @@ export default function DashboardCard({ tour }: DashboardCardProps) {
                         {title}
                     </h2>
                     <p className="">
-                        {`${description.slice(0, 25)}...`}
+                        {`${description.slice(0, 25)}... `}
                         <Link
                             to={`/tours/${_id}`}
                             title="View Details"
-                            className="text-[#4761A7] font-medium"
+                            className="text-[#267CB5] hover:text-[#2e5f80] font-medium hover:underline"
                         >
                             See More
                         </Link>

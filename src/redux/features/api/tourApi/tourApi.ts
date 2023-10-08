@@ -37,6 +37,14 @@ export const tourApi = apiSlice.injectEndpoints({
             providesTags: (result, error, arg) => [{ type: 'ToursBySearch', id: arg }]
         }),
 
+        getToursByTagName: builder.query<ToursResponse, string>({
+            query: (tagName) => ({
+                url: `/api/v1/tours/tag/${tagName}`,
+                headers: { authorization: `Bearer ${getToken()}` }
+            }),
+            providesTags: (result, error, arg) => [{ type: 'ToursByTag', id: arg }]
+        }),
+
         createTour: builder.mutation<TourResponse, FormData>({
             query: (formData) => ({
                 url: "/api/v1/tours",
@@ -53,7 +61,7 @@ export const tourApi = apiSlice.injectEndpoints({
                 method: "DELETE",
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
-            invalidatesTags: ['Tours', 'ToursByUser', 'ToursBySearch']
+            invalidatesTags: ['Tours', 'ToursByUser', 'ToursBySearch', 'ToursByTag']
         }),
 
         updateTour: builder.mutation<any, { tourId: string, formData: FormData }>({
@@ -63,7 +71,7 @@ export const tourApi = apiSlice.injectEndpoints({
                 body: formData,
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
-            invalidatesTags: ['Tours', 'ToursByUser', 'ToursBySearch']
+            invalidatesTags: ['Tours', 'ToursByUser', 'ToursBySearch', 'ToursByTag']
         }),
 
     })
@@ -74,6 +82,7 @@ export const {
     useGetTourQuery,
     useGetToursByUserQuery,
     useGetToursBySearchQuery,
+    useGetToursByTagNameQuery,
     useCreateTourMutation,
     useDeleteTourMutation,
     useUpdateTourMutation

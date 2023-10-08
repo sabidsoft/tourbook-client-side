@@ -20,16 +20,15 @@ export default function TourCard({
             />
             <div className="px-6">
                 <div className="pt-2 pb-5">
-                    {tags.length !== 0 && tags.map((tag) => {
-                        return (
-                            <span
-                                key={tag}
-                                className="inline-block mr-1 text-[#7D7670]"
-                            >
-                                {`#${tag.toLowerCase()}`}
-                            </span>
-                        )
-                    })}
+                    {tags.length !== 0 && tags.map(tag => (
+                        <Link
+                            to={`/tours/tag-name/${tag}`}
+                            key={tag}
+                            className="inline-block mr-1 text-[#267CB5] hover:text-[#2e5f80] hover:underline"
+                        >
+                            {`#${tag.toLowerCase()}`}
+                        </Link>
+                    ))}
                 </div>
                 <h2 className="text-[#43505D] text-2xl capitalize font-medium mb-2">
                     {title}
@@ -39,7 +38,7 @@ export default function TourCard({
                     <Link
                         to={`/tours/${_id}`}
                         title="View Details"
-                        className="text-[#4761A7] font-medium"
+                        className="text-[#267CB5] hover:text-[#2e5f80] font-medium hover:underline"
                     >
                         See More
                     </Link>

@@ -6,7 +6,7 @@ import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 import SearchBar from "../../components/common/searchBar/SearchBar";
 import TourCard from "../../components/cards/tourCard/TourCard";
 
-export default function SearchResult() {
+export default function ToursBySearch() {
     const [searchParams] = useSearchParams();
     const searchQuery = searchParams.get("search_query");
 
@@ -24,7 +24,7 @@ export default function SearchResult() {
         e.preventDefault();
 
         if (searchText) {
-            navigate(`/search/?search_query=${searchText}`);
+            navigate(`/tours/search/?search_query=${searchText}`);
         }
     }
 
