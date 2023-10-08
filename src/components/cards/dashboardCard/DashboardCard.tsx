@@ -37,13 +37,21 @@ export default function DashboardCard({ tour }: DashboardCardProps) {
                         {title}
                     </h2>
                     <p className="">
-                        {description.slice(0, 35)}...
+                        {`${description.slice(0, 25)}...`}
+                        <Link
+                            to={`/tours/${_id}`}
+                            title="View Details"
+                            className="text-[#4761A7] font-medium"
+                        >
+                            See More
+                        </Link>
                     </p>
                 </div>
                 <div className="flex">
                     <AiFillDelete
                         size={24}
                         color="#DE4C3A"
+                        title="Delete Tour"
                         className="mr-1 cursor-pointer"
                         onClick={() => handleDeleteTour(_id)}
                     />
@@ -54,6 +62,7 @@ export default function DashboardCard({ tour }: DashboardCardProps) {
                         <BiSolidEdit
                             size={24}
                             color="#4EAFEA"
+                            title="Edit Tour"
                         />
                     </Link>
                 </div>

@@ -4,18 +4,8 @@ import { TourResponse, ToursResponse } from "./types";
 
 export const tourApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        createTour: builder.mutation<TourResponse, FormData>({    // <TourResponse, FormData> = <ResponseValueTypeFromServer, ArgumentType>
-            query: (formData) => ({                               // If there is no argument, using void
-                url: "/api/v1/tours/create-tour",
-                method: "POST",
-                body: formData,
-                headers: { authorization: `Bearer ${getToken()}` }
-            }),
-            invalidatesTags: ['Tours', 'ToursByUser']
-        }),
-
-        getTours: builder.query<ToursResponse, void>({
-            query: () => ({
+        getTours: builder.query<ToursResponse, void>({             // <TourResponse, FormData> = <ResponseValueTypeFromServer, ArgumentType>
+            query: () => ({                                        // If there is no argument, using void
                 url: "/api/v1/tours",
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
@@ -33,10 +23,28 @@ export const tourApi = apiSlice.injectEndpoints({
 
         getToursByUser: builder.query<ToursResponse, string>({
             query: (userId) => ({
-                url: `/api/v1/tours/user-tours/${userId}`,
+                url: `/api/v1/tours?creatorId=${userId}`,
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
             providesTags: (result, error, arg) => [{ type: 'ToursByUser', id: arg }]
+        }),
+
+        getToursBySearch: builder.query<ToursResponse, string>({
+            query: (search) => ({
+                url: `/api/v1/tours?search=${search}`,
+                headers: { authorization: `Bearer ${getToken()}` }
+            }),
+            providesTags: (result, error, arg) => [{ type: 'ToursBySearch', id: arg }]
+        }),
+
+        createTour: builder.mutation<TourResponse, FormData>({
+            query: (formData) => ({
+                url: "/api/v1/tours",
+                method: "POST",
+                body: formData,
+                headers: { authorization: `Bearer ${getToken()}` }
+            }),
+            invalidatesTags: ['Tours', 'ToursByUser']
         }),
 
         deleteTour: builder.mutation<any, string>({
@@ -45,7 +53,7 @@ export const tourApi = apiSlice.injectEndpoints({
                 method: "DELETE",
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
-            invalidatesTags: ['Tours', 'ToursByUser']
+            invalidatesTags: ['Tours', 'ToursByUser', 'ToursBySearch']
         }),
 
         updateTour: builder.mutation<any, { tourId: string, formData: FormData }>({
@@ -55,17 +63,18 @@ export const tourApi = apiSlice.injectEndpoints({
                 body: formData,
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
-            invalidatesTags: ['Tours', 'ToursByUser']
+            invalidatesTags: ['Tours', 'ToursByUser', 'ToursBySearch']
         }),
 
     })
 })
 
 export const {
-    useCreateTourMutation,
     useGetToursQuery,
     useGetTourQuery,
     useGetToursByUserQuery,
+    useGetToursBySearchQuery,
+    useCreateTourMutation,
     useDeleteTourMutation,
     useUpdateTourMutation
 } = tourApi;

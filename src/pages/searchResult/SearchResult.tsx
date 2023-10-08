@@ -1,16 +1,19 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import TourCard from "../../components/cards/tourCard/TourCard";
-import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useGetToursBySearchQuery } from "../../redux/features/api/tourApi/tourApi"
 import Loader from "../../components/common/loader/Loader";
-import { useGetToursQuery } from "../../redux/features/api/tourApi/tourApi";
+import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 import SearchBar from "../../components/common/searchBar/SearchBar";
+import TourCard from "../../components/cards/tourCard/TourCard";
 
-export default function Home() {
-    const [searchText, setSearchText] = useState("");
+export default function SearchResult() {
+    const [searchParams] = useSearchParams();
+    const searchQuery = searchParams.get("search_query");
+
+    const [searchText, setSearchText] = useState(searchQuery || "");
     const navigate = useNavigate();
 
-    const { data, isLoading, isError } = useGetToursQuery();
+    const { data, isLoading, isError } = useGetToursBySearchQuery(searchQuery || "");
     const tours = data?.data.tours;
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +24,7 @@ export default function Home() {
         e.preventDefault();
 
         if (searchText) {
-            navigate(`/search?search_query=${searchText}`);
+            navigate(`/search/?search_query=${searchText}`);
         }
     }
 
@@ -34,7 +37,7 @@ export default function Home() {
         content = <ErrorMessage message='There was an error!' />;
 
     if (tours?.length === 0)
-        content = <ErrorMessage message='Opps! Sorry! There is no tour available.' />;
+        content = <ErrorMessage message='Opps! There is no tour available with your search value.' />;
 
     if (tours && tours?.length > 0)
         content =

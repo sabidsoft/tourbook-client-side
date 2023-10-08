@@ -15,6 +15,12 @@ export interface ToursResponse {
     success: boolean;
     message: string;
     data: {
+        pagination: {
+            totalPage: number;
+            currentPage: number;
+            previousPage: number | null;
+            nextPage: number | null;
+        }
         tours: Tour[];
     }
 }

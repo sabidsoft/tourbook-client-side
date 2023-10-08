@@ -38,9 +38,10 @@ export default function TourCard({
                     {`${description.slice(0, 60)}... `}
                     <Link
                         to={`/tours/${_id}`}
+                        title="View Details"
                         className="text-[#4761A7] font-medium"
                     >
-                        Read More
+                        See More
                     </Link>
                 </p>
             </div>

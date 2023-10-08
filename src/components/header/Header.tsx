@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BiMenu } from 'react-icons/bi';
 import { RxCross2 } from 'react-icons/rx';
-import logo from "../../assets/images/hero-logo-overlay.png";
+import logo from "../../assets/images/logo_toorbook.png";
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import { userLoggedOut } from "../../redux/features/auth/authSlice";
 
@@ -31,7 +31,7 @@ export default function Header() {
                             width={48}
                             height={48}
                         />
-                        <p className="logo_text text-[#404756] font-bold text-2xl ml-2">Tourbook</p>
+                        <p className="logo_text text-[#267CB5] font-bold text-2xl">Tourbook</p>
                     </Link>
 
                     {
@@ -39,25 +39,25 @@ export default function Header() {
                             <div>
                                 <Link
                                     to='/'
-                                    className="text-[#404756] font-medium text-lg mr-8"
+                                    className="text-[#267CB5] font-medium text-lg mr-5"
                                 >
                                     Home
                                 </Link>
                                 <Link
                                     to='/add-tour'
-                                    className="text-[#404756] font-medium text-lg mr-8"
+                                    className="text-[#267CB5] font-medium text-lg mr-5"
                                 >
                                     Add Tour
                                 </Link>
                                 <Link
                                     to='/dashboard'
-                                    className="text-[#404756] font-medium text-lg mr-8"
+                                    className="text-[#267CB5] font-medium text-lg mr-5"
                                 >
                                     Dashboard
                                 </Link>
                                 <button
                                     onClick={logout}
-                                    className="text-[#404756] font-medium text-lg"
+                                    className="text-[#267CB5] font-medium text-lg"
                                 >
                                     Logout
                                 </button>
@@ -66,13 +66,13 @@ export default function Header() {
                             <div>
                                 <Link
                                     to='/'
-                                    className="text-[#404756] font-medium text-lg mr-8"
+                                    className="text-[#267CB5] font-medium text-lg mr-5"
                                 >
                                     Home
                                 </Link>
                                 <Link
                                     to='/signin'
-                                    className="text-[#404756] font-medium text-lg"
+                                    className="text-[#267CB5] font-medium text-lg"
                                 >
                                     Login
                                 </Link>
@@ -92,20 +92,20 @@ export default function Header() {
                             width={30}
                             height={30}
                         />
-                        <p className="logo_text text-[#404756] font-bold text-2xl ml-2">Tourbook</p>
+                        <p className="logo_text text-[#267CB5] font-bold text-2xl">Tourbook</p>
                     </Link>
 
                     {isMenuOpen ? (
                         <RxCross2
                             size={30}
-                            color="#404756"
+                            color="#267CB5"
                             cursor='pointer'
                             onClick={() => setIsMenuOpen((prevState) => !prevState)}
                         />
                     ) : (
                         <BiMenu
                             size={30}
-                            color="#404756"
+                            color="#267CB5"
                             cursor='pointer'
                             onClick={() => setIsMenuOpen((prevState) => !prevState)}
                         />
@@ -118,27 +118,27 @@ export default function Header() {
                             <Link
                                 to='/'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
-                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#267CB5] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Home
                             </Link>
                             <Link
                                 to='/add-tour'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
-                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#267CB5] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Add Tour
                             </Link>
                             <Link
                                 to='/dashboard'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
-                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#267CB5] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Dashboard
                             </Link>
                             <button
                                 onClick={logout}
-                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#267CB5] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Logout
                             </button>
@@ -148,14 +148,14 @@ export default function Header() {
                             <Link
                                 to='/'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
-                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#267CB5] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Home
                             </Link>
                             <Link
                                 to='/signin'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
-                                className="text-[#404756] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
+                                className="text-[#267CB5] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
                                 Login
                             </Link>
