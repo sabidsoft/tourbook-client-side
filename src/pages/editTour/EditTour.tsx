@@ -106,8 +106,14 @@ export default function EditTour() {
         if (title.length < 3)
             return setErrorMessage("Title is too short.");
 
-        if (description.length < 3)
+        if (title.length > 55)
+            return setErrorMessage("Title is too long.");
+
+        if (description.length < 100)
             return setErrorMessage("Description is too short.");
+
+        if (description.length > 1200)
+            return setErrorMessage("Description is too long.");
 
         // Create a FormData object and append fields to it
         const formData = new FormData();
@@ -182,7 +188,7 @@ export default function EditTour() {
                     />
 
                     {
-                        typeof(image) === "object" ? (
+                        typeof (image) === "object" ? (
                             <img
                                 src={URL.createObjectURL(image)}
                                 alt="Selected"

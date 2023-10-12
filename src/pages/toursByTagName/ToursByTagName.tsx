@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useGetToursByTagNameQuery } from "../../redux/features/api/tourApi/tourApi"
 import Loader from "../../components/common/loader/Loader";
 import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
-import TourCard from "../../components/cards/tourCard/TourCard";
+import ToursCard from "../../components/cards/toursCard/ToursCard";
 import SearchBar from "../../components/common/searchBar/SearchBar";
 
 export default function ToursByTagName() {
@@ -42,7 +42,7 @@ export default function ToursByTagName() {
             (<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-6 mx-5 md:mx-0">
                 {
                     tours && tours
-                        .map(tour => <TourCard key={tour._id} tour={tour} />)
+                        .map(tour => <ToursCard key={tour._id} tour={tour} />)
                 }
             </div>);
 

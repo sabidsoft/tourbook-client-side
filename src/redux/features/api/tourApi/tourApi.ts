@@ -45,6 +45,15 @@ export const tourApi = apiSlice.injectEndpoints({
             providesTags: (result, error, arg) => [{ type: 'ToursByTag', id: arg }]
         }),
 
+        getRelatedTours: builder.query<ToursResponse, { tags: string[], currentTourId: string }>({
+            query: ({ tags, currentTourId }) => ({
+                url: `/api/v1/tours/related-tours`,
+                method: "POST",
+                body: { tags, currentTourId },
+                headers: { authorization: `Bearer ${getToken()}` }
+            }),
+        }),
+
         createTour: builder.mutation<TourResponse, FormData>({
             query: (formData) => ({
                 url: "/api/v1/tours",
@@ -83,6 +92,7 @@ export const {
     useGetToursByUserQuery,
     useGetToursBySearchQuery,
     useGetToursByTagNameQuery,
+    useGetRelatedToursQuery,
     useCreateTourMutation,
     useDeleteTourMutation,
     useUpdateTourMutation

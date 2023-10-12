@@ -4,7 +4,7 @@ import { useGetToursBySearchQuery } from "../../redux/features/api/tourApi/tourA
 import Loader from "../../components/common/loader/Loader";
 import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 import SearchBar from "../../components/common/searchBar/SearchBar";
-import TourCard from "../../components/cards/tourCard/TourCard";
+import ToursCard from "../../components/cards/toursCard/ToursCard";
 
 export default function ToursBySearch() {
     const [searchParams] = useSearchParams();
@@ -34,7 +34,7 @@ export default function ToursBySearch() {
         content = <Loader />;
 
     if (isError)
-        content = <ErrorMessage message='There was an error!' />;
+        content = <ErrorMessage message='Something went wrong!' />;
 
     if (tours?.length === 0)
         content = <ErrorMessage message='Opps! There is no tour available with your search value.' />;
@@ -44,7 +44,7 @@ export default function ToursBySearch() {
             (<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-6 mx-5 md:mx-0">
                 {
                     tours && tours
-                        .map(tour => <TourCard key={tour._id} tour={tour} />)
+                        .map(tour => <ToursCard key={tour._id} tour={tour} />)
                 }
             </div>);
 

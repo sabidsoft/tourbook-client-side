@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import TourCard from "../../components/cards/tourCard/TourCard";
+import ToursCard from "../../components/cards/toursCard/ToursCard";
 import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 import Loader from "../../components/common/loader/Loader";
 import { useGetToursQuery } from "../../redux/features/api/tourApi/tourApi";
@@ -41,7 +41,7 @@ export default function Home() {
             (<div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-6 mx-5 md:mx-0">
                 {
                     tours && tours
-                        .map(tour => <TourCard key={tour._id} tour={tour} />)
+                        .map(tour => <ToursCard key={tour._id} tour={tour} />)
                 }
             </div>);
 
