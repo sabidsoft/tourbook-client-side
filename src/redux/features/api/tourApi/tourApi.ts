@@ -4,9 +4,9 @@ import { TourResponse, ToursResponse } from "./types";
 
 export const tourApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getTours: builder.query<ToursResponse, void>({             // <TourResponse, FormData> = <ResponseValueTypeFromServer, ArgumentType>
-            query: () => ({                                        // If there is no argument, using void
-                url: "/api/v1/tours",
+        getTours: builder.query<ToursResponse, number>({             // <ToursResponse, FormData> = <ResponseValueTypeFromServer, ArgumentType>
+            query: (page) => ({                                        // If there is no argument, have to use void
+                url: `/api/v1/tours?page=${page}`,
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
             keepUnusedDataFor: 600, // default 60 seconds
@@ -21,37 +21,38 @@ export const tourApi = apiSlice.injectEndpoints({
             providesTags: (result, error, arg) => [{ type: 'Tour', id: arg }]
         }),
 
-        getToursByUser: builder.query<ToursResponse, string>({
-            query: (userId) => ({
-                url: `/api/v1/tours?creatorId=${userId}`,
+        getToursByUser: builder.query<ToursResponse, { userId: string, page: number }>({
+            query: ({ userId, page }) => ({
+                url: `/api/v1/tours?creatorId=${userId}&page=${page}`,
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
-            providesTags: (result, error, arg) => [{ type: 'ToursByUser', id: arg }]
+            providesTags: (result, error, arg) => [{ type: 'ToursByUser', id: arg.userId }]
         }),
 
-        getToursBySearch: builder.query<ToursResponse, string>({
-            query: (search) => ({
-                url: `/api/v1/tours?search=${search}`,
+        getToursBySearch: builder.query<ToursResponse, { search: string, page: number }>({
+            query: ({ search, page }) => ({
+                url: `/api/v1/tours?search=${search}&page=${page}`,
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
-            providesTags: (result, error, arg) => [{ type: 'ToursBySearch', id: arg }]
+            providesTags: (result, error, arg) => [{ type: 'ToursBySearch', id: arg.search }]
         }),
 
-        getToursByTagName: builder.query<ToursResponse, string>({
-            query: (tagName) => ({
-                url: `/api/v1/tours/tag/${tagName}`,
+        getToursByTagName: builder.query<ToursResponse, { tagName: string, page: number }>({
+            query: ({ tagName, page }) => ({
+                url: `/api/v1/tours?tags=${tagName}&page=${page}`,
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
-            providesTags: (result, error, arg) => [{ type: 'ToursByTag', id: arg }]
+            providesTags: (result, error, arg) => [{ type: 'ToursByTag', id: arg.tagName }]
         }),
 
-        getRelatedTours: builder.query<ToursResponse, { tags: string[], currentTourId: string }>({
-            query: ({ tags, currentTourId }) => ({
+        getRelatedTours: builder.query<ToursResponse, { currentTourId: string, tags: string[], }>({
+            query: ({ currentTourId, tags }) => ({
                 url: `/api/v1/tours/related-tours`,
                 method: "POST",
-                body: { tags, currentTourId },
+                body: { currentTourId, tags },
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
+            providesTags: (result, error, arg) => [{ type: 'RelatedTours', id: arg.currentTourId }]
         }),
 
         createTour: builder.mutation<TourResponse, FormData>({

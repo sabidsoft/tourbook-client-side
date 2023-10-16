@@ -22,7 +22,7 @@ export default function Header() {
     return (
         <nav>
             {/* Desktop Navigation */}
-            <div className="bg-[#F3F4F6]">
+            <div className="bg-[#F4F4F4]">
                 <div className="w-[100%] md:w-[80%] mx-auto hidden md:flex justify-between items-center py-4">
                     <Link to="/" className="flex items-center">
                         <img

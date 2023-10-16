@@ -25,7 +25,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tours/search" element={<ToursBySearch />} />
-        <Route path="/tours/tag-name/:tagName" element={<ToursByTagName />} />
+        <Route path="/tours/tags" element={<ToursByTagName />} />
         <Route path="/tours/:tourId" element={<SingleTour />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />

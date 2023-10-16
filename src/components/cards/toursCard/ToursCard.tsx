@@ -12,7 +12,7 @@ export default function TourCard({
 }: TourCardProps) {
 
     return (
-        <div className="shadow-md rounded-lg">
+        <div className="shadow-md rounded-lg bg-[#F4F4F4]">
             <img
                 src={imageUrl}
                 alt="tour img"
@@ -22,7 +22,7 @@ export default function TourCard({
                 <div className="pt-2 pb-5">
                     {tags.length !== 0 && tags.map(tag => (
                         <Link
-                            to={`/tours/tag-name/${tag}`}
+                            to={`/tours/tags?tag_name=${tag}`}
                             key={tag}
                             className="inline-block mr-1 text-[#267CB5] hover:text-[#2e5f80] hover:underline"
                         >
@@ -33,14 +33,14 @@ export default function TourCard({
                 <h2 className="text-[#43505D] text-2xl capitalize font-medium mb-2">
                     {title}
                 </h2>
-                <p className="text-[#55545D] mb-12">
+                <p className="text-[#55545D] text-justify mb-12">
                     {`${description.slice(0, 60)}... `}
                     <Link
                         to={`/tours/${_id}`}
                         title="View Details"
                         className="text-[#267CB5] hover:text-[#2e5f80] font-medium hover:underline"
                     >
-                        See More
+                        View Details
                     </Link>
                 </p>
             </div>

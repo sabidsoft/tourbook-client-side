@@ -5,11 +5,11 @@ export default function RelatedToursCard({ tour }: RelatedToursCardProps) {
     const { imageUrl, title, creatorName, createdAt } = tour;
 
     return (
-        <div className="flex mb-2.5 shadow-md rounded">
+        <div className="flex mb-2 rounded-lg hover:bg-[#F4F4F4] ">
             <img
                 src={imageUrl}
                 alt={title}
-                className="w-[45%] h-[110px] object-cover rounded-t md:rounded-l"
+                className="w-[45%] h-[110px] object-cover rounded-lg"
             />
             <div className="w-[55%] px-2">
                 <h2 className="font-medium mb-2">{title.length < 40 ? title : `${title.slice(0, 40)}...`}</h2>

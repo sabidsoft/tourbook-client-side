@@ -19,20 +19,20 @@ export default function SingleTour() {
         return <ErrorMessage message='There was an error!' />;
 
     return (
-        <div className="flex justify-between w-[100%] sm:w-[80%] mx-auto px-5 sm:px-0">
-            <div className="w-[73%]">
+        <div className="sm:w-[80%] flex flex-col justify-center items-center lg:flex-row lg:justify-between lg:items-start mx-auto px-5 sm:px-0">
+            <div className="lg:w-[74%]">
                 <h2 className="text-center text-3xl text-[#38404C] font-bold py-5">
                     {tour?.title}
                 </h2>
                 <img
                     src={tour?.imageUrl}
                     alt="tour img"
-                    className="w-full md:h-[400px] xl:h-[500px] object-cover"
+                    className="w-full md:h-[400px] xl:h-[500px] object-cover rounded"
                 />
                 <div className="mt-2 mb-5">
                     {tour?.tags.length !== 0 && tour?.tags.map(tag => (
                         <Link
-                            to={`/tours/tag-name/${tag}`}
+                            to={`/tours/tags?tag_name=${tag}`}
                             key={tag}
                             className="inline-block mr-1 text-[#267CB5] hover:text-[#2e5f80] hover:underline"
                         >
@@ -40,9 +40,6 @@ export default function SingleTour() {
                         </Link>
                     ))}
                 </div>
-                <p className="mb-5 text-justify">
-                    {tour?.description}
-                </p>
                 <p className="inline-block">
                     Created by:
                     <span className="font-semibold"> {tour?.creatorName}</span>
@@ -51,8 +48,11 @@ export default function SingleTour() {
                     <LuCalendarDays size={24} />
                     <span className="ml-2">{moment(tour?.createdAt).fromNow()}</span>
                 </div>
+                <p className="text-justify mb-5">
+                    {tour?.description}
+                </p>
             </div>
-            <div className="w-[395px] ml-4">
+            <div className="w-[395px] lg:ml-5">
                 <RelatedTours
                     tags={tour?.tags || []}
                     currentTourId={tourId || ""}

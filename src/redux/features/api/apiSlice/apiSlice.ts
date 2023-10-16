@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
     reducerPath: 'tourbookApi',
-    tagTypes: ['Tours', 'Tour', 'ToursByUser', 'ToursBySearch', 'ToursByTag'],
+    tagTypes: ['Tours', 'Tour', 'ToursByUser', 'ToursBySearch', 'ToursByTag', 'RelatedTours'],
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:8080',
     }),

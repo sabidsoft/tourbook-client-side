@@ -23,11 +23,11 @@ export default function DashboardCard({ tour }: DashboardCardProps) {
         return <ErrorMessage message="There is an error occured!" />
 
     return (
-        <div key={_id} className="flex flex-col md:flex-row shadow-md rounded mb-4">
+        <div key={_id} className="flex flex-col md:flex-row rounded-lg mt-3 bg-[#F4F4F4]">
             <img
                 src={imageUrl}
                 alt={title}
-                className="w-full h-[200px] md:w-[35%] md:h-[150px] object-cover rounded-t md:rounded-l"
+                className="w-full h-[200px] md:w-[35%] md:h-[150px] object-cover rounded-t-lg md:rounded-l-lg"
             />
             <div className="w-full md:w-[65%] flex justify-between items-center px-8 py-8 md:py-0">
                 <div>
@@ -41,7 +41,7 @@ export default function DashboardCard({ tour }: DashboardCardProps) {
                             title="View Details"
                             className="text-[#267CB5] hover:text-[#2e5f80] font-medium hover:underline"
                         >
-                            See More
+                            View Details
                         </Link>
                     </p>
                 </div>
