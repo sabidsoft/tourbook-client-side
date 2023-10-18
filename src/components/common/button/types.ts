@@ -1,4 +1,4 @@
 export interface ButtonProps {
     buttonName: string;
-    handlePageChange: () => void;
+    onClick: () => void;
 }

@@ -28,7 +28,7 @@ export default function Pagination({ totalPage, currentPage, handlePageChange }:
             <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className={`hover:bg-[#F4F4F4] text-[#6C757D] text-xl font-medium disabled:opacity-20 rounded-full w-10 h-10 mr-2`}
+                className={`hover:bg-[#F4F4F4] text-[#6C757D] text-xl font-medium disabled:opacity-25 rounded-full w-10 h-10 mr-2`}
             >
                 {"<"}
             </button>
@@ -51,7 +51,7 @@ export default function Pagination({ totalPage, currentPage, handlePageChange }:
             <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPage}
-                className={`hover:bg-[#F4F4F4] text-[#6C757D] text-xl font-medium disabled:opacity-20 rounded-full w-10 h-10`}
+                className={`hover:bg-[#F4F4F4] text-[#6C757D] text-xl font-medium disabled:opacity-25 rounded-full w-10 h-10`}
             >
                 {">"}
             </button>

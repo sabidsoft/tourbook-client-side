@@ -137,7 +137,7 @@ export default function EditTour() {
     if (isLoading)
         return <Loader />;
 
-    if (isError)
+    if (!isLoading && isError)
         return <ErrorMessage message="There is an error occured!" />;
 
     return (

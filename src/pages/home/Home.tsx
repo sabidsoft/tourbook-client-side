@@ -39,13 +39,13 @@ export default function Home() {
     if (isLoading)
         content = <Loader />;
 
-    if (isError)
+    if (!isLoading && isError)
         content = <ErrorMessage message='There was an error!' />;
 
-    if (tours?.length === 0)
+    if (!isLoading && !isError && tours && tours.length === 0)
         content = <ErrorMessage message='Opps! Sorry! There is no tour available.' />;
 
-    if (tours && tours?.length > 0)
+    if (!isLoading && !isError && tours && tours.length > 0)
         content =
             (
                 <>

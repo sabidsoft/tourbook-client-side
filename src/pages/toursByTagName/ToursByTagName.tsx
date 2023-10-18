@@ -42,13 +42,13 @@ export default function ToursByTagName() {
     if (isLoading)
         content = <Loader />;
 
-    if (isError)
+    if (!isLoading && isError)
         content = <ErrorMessage message='There was an error!' />;
 
-    if (tours?.length === 0)
-        content = <ErrorMessage message='Opps! There is no tour available with the tag.' />;
+    if (!isLoading && !isError && tours && tours.length === 0)
+        content = <ErrorMessage message='Opps! There is no more tour available with the tag.' />;
 
-    if (tours && tours?.length > 0)
+    if (!isLoading && !isError && tours && tours.length > 0)
         content =
             (
                 <>

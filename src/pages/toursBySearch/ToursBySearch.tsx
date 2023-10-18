@@ -42,13 +42,13 @@ export default function ToursBySearch() {
     if (isLoading)
         content = <Loader />;
 
-    if (isError)
+    if (!isLoading && isError)
         content = <ErrorMessage message='Something went wrong!' />;
 
-    if (tours?.length === 0)
+    if (!isLoading && !isError && tours && tours.length === 0)
         content = <ErrorMessage message='Opps! There is no tour available with your search value.' />;
 
-    if (tours && tours?.length > 0)
+    if (!isLoading && !isError && tours && tours.length > 0)
         content =
             (
                 <>

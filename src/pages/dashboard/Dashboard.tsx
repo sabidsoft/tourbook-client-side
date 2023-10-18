@@ -25,13 +25,13 @@ export default function Dashboard() {
     if (isLoading)
         content = <Loader />;
 
-    if (isError)
+    if (!isLoading && isError)
         content = <ErrorMessage message="There is an error occured!" />;
 
-    if (tours?.length === 0)
+    if (!isLoading && !isError && tours && tours.length === 0)
         content = <ErrorMessage message='You have not create any tour yet.' />;
 
-    if (tours && tours?.length > 0)
+    if (!isLoading && !isError && tours && tours.length > 0)
         content =
             (
                 <>

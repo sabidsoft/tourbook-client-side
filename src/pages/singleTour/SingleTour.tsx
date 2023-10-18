@@ -15,7 +15,7 @@ export default function SingleTour() {
     if (isLoading)
         return <Loader />;
 
-    if (isError)
+    if (!isLoading && isError)
         return <ErrorMessage message='There was an error!' />;
 
     return (
@@ -52,7 +52,7 @@ export default function SingleTour() {
                     {tour?.description}
                 </p>
             </div>
-            <div className="w-[395px] lg:ml-5">
+            <div className="w-[395px] lg:ml-5 mb-5">
                 <RelatedTours
                     tags={tour?.tags || []}
                     currentTourId={tourId || ""}
