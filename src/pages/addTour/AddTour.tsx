@@ -100,8 +100,8 @@ export default function AddTour() {
         if (description.length < 100)
             return setErrorMessage("Description is too short. Minimum 100 characters required.");
 
-        if (description.length > 1200)
-            return setErrorMessage("Description is too long. Maximum 1200 characters allowed.");
+        if (description.length > 10000)
+            return setErrorMessage("Description is too long. Maximum 10000 characters allowed.");
 
         // Create a FormData object and append fields to it
         const formData = new FormData();

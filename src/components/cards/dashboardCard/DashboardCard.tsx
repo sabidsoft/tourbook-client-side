@@ -27,7 +27,7 @@ export default function DashboardCard({ tour }: DashboardCardProps) {
             <img
                 src={imageUrl}
                 alt={title}
-                className="w-full h-[200px] md:w-[35%] md:h-[150px] object-cover rounded-t-lg md:rounded-l-lg"
+                className="w-full h-[200px] md:w-[35%] md:h-[150px] object-cover rounded-t-lg md:rounded-none md:rounded-l-lg"
             />
             <div className="w-full md:w-[65%] flex justify-between items-center px-8 py-8 md:py-0">
                 <div>

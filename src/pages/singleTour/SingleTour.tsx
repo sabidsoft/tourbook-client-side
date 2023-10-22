@@ -5,6 +5,7 @@ import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 import { LuCalendarDays } from "react-icons/lu";
 import moment from "moment";
 import RelatedTours from "../relatedTours/RelatedTours";
+import LikeTour from "../../components/common/likeTour/LikeTour";
 
 export default function SingleTour() {
     const { tourId } = useParams();
@@ -29,16 +30,24 @@ export default function SingleTour() {
                     alt="tour img"
                     className="w-full md:h-[400px] xl:h-[500px] object-cover rounded"
                 />
-                <div className="mt-2 mb-5">
-                    {tour?.tags.length !== 0 && tour?.tags.map(tag => (
-                        <Link
-                            to={`/tours/tags?tag_name=${tag}`}
-                            key={tag}
-                            className="inline-block mr-1 text-[#267CB5] hover:text-[#2e5f80] hover:underline"
-                        >
-                            {`#${tag.toLowerCase()}`}
-                        </Link>
-                    ))}
+                <div className="flex justify-between mt-3 mb-5">
+                    <div>
+                        {tour?.tags.length !== 0 && tour?.tags.map(tag => (
+                            <Link
+                                to={`/tours/tags?tag_name=${tag}`}
+                                key={tag}
+                                className="inline-block mr-1 text-[#267CB5] hover:text-[#2e5f80] hover:underline"
+                            >
+                                {`#${tag.toLowerCase()}`}
+                            </Link>
+                        ))}
+                    </div>
+                    <div>
+                        <LikeTour
+                            likedUserIds={tour?.likedUsers || []}
+                            tourId={tourId as string}
+                        />
+                    </div>
                 </div>
                 <p className="inline-block">
                     Created by:

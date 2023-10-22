@@ -72,7 +72,7 @@ export default function ToursBySearch() {
             );
 
     return (
-        <div className="w-full md:w-[80%] 2xl:w-[60%] mx-auto py-8">
+        <div className="w-full md:w-[80%] 2xl:w-[70%] mx-auto py-8">
             <div className="pb-8">
                 <SearchBar
                     searchText={searchText}

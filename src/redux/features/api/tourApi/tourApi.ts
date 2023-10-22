@@ -20,7 +20,6 @@ export const tourApi = apiSlice.injectEndpoints({
             }),
             providesTags: (result, error, arg) => [{ type: 'Tour', id: arg }]
         }),
-
         getToursByUser: builder.query<ToursResponse, { userId: string, page: number }>({
             query: ({ userId, page }) => ({
                 url: `/api/v1/tours?creatorId=${userId}&page=${page}&limit=${10}`,
@@ -45,9 +44,9 @@ export const tourApi = apiSlice.injectEndpoints({
             providesTags: (result, error, arg) => [{ type: 'ToursByTag', id: arg.tagName }]
         }),
 
-        getRelatedTours: builder.query<ToursResponse, { tags: string[], currentTourId: string, page: number }>({
-            query: ({ tags, currentTourId, page }) => ({
-                url: `/api/v1/tours?tagsValues=${tags}&currentTourId=${currentTourId}&page=${page}&limit=${10}`,
+        getRelatedTours: builder.query<ToursResponse, { tags: string[], currentTourId: string }>({
+            query: ({ tags, currentTourId }) => ({
+                url: `/api/v1/tours?tagsValues=${tags}&currentTourId=${currentTourId}&page=${1}&limit=${15}`,
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
             providesTags: (result, error, arg) => [{ type: 'RelatedTours', id: arg.currentTourId }]
@@ -79,7 +78,16 @@ export const tourApi = apiSlice.injectEndpoints({
                 body: formData,
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
-            invalidatesTags: ['Tours', 'ToursByUser', 'ToursBySearch', 'ToursByTag']
+            invalidatesTags: ['Tours', 'Tour', 'ToursByUser', 'ToursBySearch', 'ToursByTag']
+        }),
+
+        likeTour: builder.mutation<any, string>({
+            query: (tourId) => ({
+                url: `/api/v1/tours/like/${tourId}`,
+                method: "PATCH",
+                headers: { authorization: `Bearer ${getToken()}` }
+            }),
+            invalidatesTags: ['Tours', 'Tour', 'ToursByUser', 'ToursBySearch', 'ToursByTag']
         }),
 
     })
@@ -94,5 +102,6 @@ export const {
     useGetRelatedToursQuery,
     useCreateTourMutation,
     useDeleteTourMutation,
-    useUpdateTourMutation
+    useUpdateTourMutation,
+    useLikeTourMutation
 } = tourApi;

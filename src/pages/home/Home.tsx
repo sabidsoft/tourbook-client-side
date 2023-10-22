@@ -47,29 +47,27 @@ export default function Home() {
 
     if (!isLoading && !isError && tours && tours.length > 0)
         content =
-            (
-                <>
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-4 mx-5 md:mx-0">
-                        {
-                            tours && tours
-                                .map(tour => <ToursCard key={tour._id} tour={tour} />)
-                        }
-                    </div>
+            <>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-4 mx-5 md:mx-0">
                     {
-                        totalPage > 1 &&
-                        <div className="py-8 mt-8 text-center">
-                            <Pagination
-                                totalPage={totalPage}
-                                currentPage={currentPage}
-                                handlePageChange={handlePageChange}
-                            />
-                        </div>
+                        tours && tours
+                            .map(tour => <ToursCard key={tour._id} tour={tour} />)
                     }
-                </>
-            );
+                </div>
+                {
+                    totalPage > 1 &&
+                    <div className="py-8 mt-8 text-center">
+                        <Pagination
+                            totalPage={totalPage}
+                            currentPage={currentPage}
+                            handlePageChange={handlePageChange}
+                        />
+                    </div>
+                }
+            </>;
 
     return (
-        <div className="w-full md:w-[80%] 2xl:w-[60%] mx-auto py-8">
+        <div className="w-full md:w-[80%] 2xl:w-[70%] mx-auto py-8">
             <div className="pb-8">
                 <SearchBar
                     searchText={searchText}

@@ -5,7 +5,7 @@ export default function RelatedToursCard({ tour }: RelatedToursCardProps) {
     const { imageUrl, title, creatorName, createdAt } = tour;
 
     return (
-        <div className="flex mb-2 rounded-lg hover:bg-[#F4F4F4] ">
+        <div className="flex mb-2 rounded-lg hover:bg-[#F4F4F4]">
             <img
                 src={imageUrl}
                 alt={title}
