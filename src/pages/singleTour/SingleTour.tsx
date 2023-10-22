@@ -30,13 +30,13 @@ export default function SingleTour() {
                     alt="tour img"
                     className="w-full md:h-[400px] xl:h-[500px] object-cover rounded"
                 />
-                <div className="flex justify-between mt-3 mb-5">
+                <div className="flex justify-between mt-3 mb-8">
                     <div>
                         {tour?.tags.length !== 0 && tour?.tags.map(tag => (
                             <Link
                                 to={`/tours/tags?tag_name=${tag}`}
                                 key={tag}
-                                className="inline-block mr-1 text-[#267CB5] hover:text-[#2e5f80] hover:underline"
+                                className="inline-block text-sm text-[#267CB5] hover:text-[#2e5f80] hover:underline"
                             >
                                 {`#${tag.toLowerCase()}`}
                             </Link>
@@ -53,15 +53,15 @@ export default function SingleTour() {
                     Created by:
                     <span className="font-semibold"> {tour?.creatorName}</span>
                 </p>
-                <div className="flex flex-row mb-5">
+                <div className="flex flex-row mb-8">
                     <LuCalendarDays size={24} />
                     <span className="ml-2">{moment(tour?.createdAt).fromNow()}</span>
                 </div>
-                <p className="text-justify mb-5">
+                <p className="text-justify mb-8">
                     {tour?.description}
                 </p>
             </div>
-            <div className="w-[395px] lg:ml-5 mb-5">
+            <div className="w-[395px] lg:ml-5 mb-8">
                 <RelatedTours
                     tags={tour?.tags || []}
                     currentTourId={tourId || ""}

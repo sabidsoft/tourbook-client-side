@@ -27,7 +27,7 @@ export default function ToursCard({
                             <Link
                                 to={`/tours/tags?tag_name=${tag}`}
                                 key={tag}
-                                className="inline-block mr-1 text-sm text-[#267CB5] hover:text-[#2e5f80] hover:underline"
+                                className="inline-block text-sm text-[#267CB5] hover:text-[#2e5f80] hover:underline"
                             >
                                 {`#${tag.toLowerCase()}`}
                             </Link>
