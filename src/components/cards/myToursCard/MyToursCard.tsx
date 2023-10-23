@@ -1,12 +1,12 @@
 import { AiFillDelete } from "react-icons/ai";
 import { BiSolidEdit } from "react-icons/bi";
-import { DashboardCardProps } from "./types";
+import { MyToursCardProps } from "./types";
 import { useDeleteTourMutation } from "../../../redux/features/api/tourApi/tourApi";
 import Loader from "../../common/loader/Loader";
 import ErrorMessage from "../../common/errorMessage/ErrorMessage";
 import { Link } from "react-router-dom";
 
-export default function DashboardCard({ tour }: DashboardCardProps) {
+export default function MyToursCard({ tour }: MyToursCardProps) {
     const { _id, imageUrl, title, description } = tour;
 
     const [deleteTour, { isLoading, isError }] = useDeleteTourMutation();
@@ -23,7 +23,7 @@ export default function DashboardCard({ tour }: DashboardCardProps) {
         return <ErrorMessage message="There is an error occured!" />
 
     return (
-        <div key={_id} className="flex flex-col md:flex-row rounded-lg mt-3 bg-[#F4F4F4]">
+        <div key={_id} className="flex flex-col md:flex-row shadow-md rounded-lg mt-3 bg-[#F4F4F4]">
             <img
                 src={imageUrl}
                 alt={title}

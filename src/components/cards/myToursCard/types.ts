@@ -1,5 +1,5 @@
 import { Tour } from "../../../redux/features/api/tourApi/types";
 
-export interface DashboardCardProps {
+export interface MyToursCardProps {
     tour: Tour;
 }

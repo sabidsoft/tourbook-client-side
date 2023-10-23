@@ -50,10 +50,10 @@ export default function Header() {
                                     Add Tour
                                 </Link>
                                 <Link
-                                    to='/dashboard'
+                                    to='/my-tours'
                                     className="text-[#267CB5] font-medium text-lg mr-5"
                                 >
-                                    Dashboard
+                                    My Tours
                                 </Link>
                                 <button
                                     onClick={logout}
@@ -130,11 +130,11 @@ export default function Header() {
                                 Add Tour
                             </Link>
                             <Link
-                                to='/dashboard'
+                                to='/my-tours'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
                                 className="text-[#267CB5] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
                             >
-                                Dashboard
+                                My Tours
                             </Link>
                             <button
                                 onClick={logout}

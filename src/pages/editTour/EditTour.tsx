@@ -127,7 +127,7 @@ export default function EditTour() {
 
     useEffect(() => {
         if (data) {
-            navigate("/dashboard");
+            navigate("/my-tours");
         }
         if (error) {
             setErrorMessage("Something went wrong.");

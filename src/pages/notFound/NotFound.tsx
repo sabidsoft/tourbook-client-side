@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 export default function NotFound() {
     const navigate = useNavigate();
 
+    // Go backward
     const handleGoBack = () => {
         navigate(-1)
     }

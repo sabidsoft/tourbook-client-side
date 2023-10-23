@@ -11,14 +11,13 @@ export const apiSlice = createApi({
 
 
 
-// // with prepareHeaders and keepUnusedDataFor
+// // with prepareHeaders
 // import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 // import { RootState } from '../../../app/store';
 
 // export const apiSlice = createApi({
 //     reducerPath: 'tourbookApi',
 //     tagTypes: ['Tours', 'Tour'],
-//     keepUnusedDataFor: 600,
 //     baseQuery: fetchBaseQuery({
 //         baseUrl: 'http://localhost:8080',
 //         prepareHeaders: async (headers, { getState }) => {

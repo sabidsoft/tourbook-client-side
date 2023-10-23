@@ -18,14 +18,17 @@ export default function Home() {
     const pagination = data?.data.pagination;
     const totalPage = pagination?.totalPage || 1;
 
+    // Handle page change
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     }
 
+    // Handle title change
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value);
     }
 
+    // handle submit
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 

@@ -46,7 +46,7 @@ export const tourApi = apiSlice.injectEndpoints({
 
         getRelatedTours: builder.query<ToursResponse, { tags: string[], currentTourId: string }>({
             query: ({ tags, currentTourId }) => ({
-                url: `/api/v1/tours?tagsValues=${tags}&currentTourId=${currentTourId}&page=${1}&limit=${15}`,
+                url: `/api/v1/tours?tagsValues=${tags}&currentTourId=${currentTourId}&page=${1}&limit=${10}`,
                 headers: { authorization: `Bearer ${getToken()}` }
             }),
             providesTags: (result, error, arg) => [{ type: 'RelatedTours', id: arg.currentTourId }]
@@ -83,7 +83,7 @@ export const tourApi = apiSlice.injectEndpoints({
 
         likeTour: builder.mutation<any, string>({
             query: (tourId) => ({
-                url: `/api/v1/tours/like/${tourId}`,
+                url: `/api/v1/tours/${tourId}/like`,
                 method: "PATCH",
                 headers: { authorization: `Bearer ${getToken()}` }
             }),

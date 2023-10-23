@@ -1,12 +1,12 @@
 import { useState } from "react"
-import DashboardCard from "../../components/cards/dashboardCard/DashboardCard";
+import MyToursCard from "../../components/cards/myToursCard/MyToursCard";
 import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 import Loader from "../../components/common/loader/Loader";
 import Pagination from "../../components/common/pagination/Pagination";
 import { useAppSelector } from "../../redux/app/hooks";
 import { useGetToursByUserQuery } from "../../redux/features/api/tourApi/tourApi";
 
-export default function Dashboard() {
+export default function MyTours() {
     const [currentPage, setCurrentPage] = useState(1);
     const user = useAppSelector(state => state.auth.user);
 
@@ -16,6 +16,7 @@ export default function Dashboard() {
     const pagination = data?.data.pagination;
     const totalPage = pagination?.totalPage || 1;
 
+    // handle page change
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     }
@@ -35,7 +36,7 @@ export default function Dashboard() {
         content =
             (
                 <>
-                    {tours && tours.map(tour => <DashboardCard key={tour._id} tour={tour} />)}
+                    {tours && tours.map(tour => <MyToursCard key={tour._id} tour={tour} />)}
                     {
                         totalPage > 1 &&
                         <div className="py-8 mt-8 text-center">
@@ -52,9 +53,8 @@ export default function Dashboard() {
     return (
         <div className="mx-5 md:mx-0 mb-8">
             <div className="w-full md:w-[700px] mx-auto">
-                <h2 className="text-2xl text-center pt-8 pb-2">
-                    Dashboard:
-                    <span> {user?.name}</span>
+                <h2 className="text-3xl text-center font-medium my-5">
+                    My Tours
                 </h2>
                 <hr />
                 {content}
