@@ -13,6 +13,9 @@ import EditTour from "./pages/editTour/EditTour";
 import NotFound from "./pages/notFound/NotFound";
 import ToursBySearch from "./pages/toursBySearch/ToursBySearch";
 import ToursByTagName from "./pages/toursByTagName/ToursByTagName";
+import EditProfile from "./pages/editProfile/EditProfile";
+import ChangePassword from "./pages/changePassword/ChangePassword";
+import Account from "./pages/account/Account";
 
 export default function App() {
   const initialAuthChecked = useInitialAuthCheck();
@@ -32,6 +35,9 @@ export default function App() {
         <Route path="/add-tour" element={<PrivateRoute><AddTour /></PrivateRoute>} />
         <Route path="/edit-tour/:tourId" element={<PrivateRoute><EditTour /></PrivateRoute>} />
         <Route path="/my-tours" element={<PrivateRoute><MyTours /></PrivateRoute>} />
+        <Route path="/account" element={<PrivateRoute><Account /></PrivateRoute>} />
+        <Route path="/edit-profile" element={<PrivateRoute><EditProfile /></PrivateRoute>} />
+        <Route path="/change-password" element={<PrivateRoute><ChangePassword /></PrivateRoute>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>

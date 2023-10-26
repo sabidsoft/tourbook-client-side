@@ -2,25 +2,25 @@ import { FormEvent, ChangeEvent, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/common/loader/Loader";
 import { InitialState } from "./types";
-import { useSignUpMutation } from "../../redux/features/api/authApi/authApi";
+import { useSignUpMutation } from "../../redux/features/api/userApi/userApi";
 import FormCard from "../../components/cards/formCard/FormCard";
 
 // initialState
 const initialState: InitialState = {
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
 }
 
 export default function SignUp() {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState(initialState);
     const [errorMessage, setErrorMessage] = useState("");
-    const navigate = useNavigate();
+    const [signUp, { data, error, isLoading }] = useSignUpMutation();
 
-    const [signUp, { isSuccess, isLoading, error }] = useSignUpMutation();
-
-    const { name, email, password, confirmPassword } = formData;
+    const { firstName, lastName, email, password, confirmPassword } = formData;
 
     // handling input elements values
     const onInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -38,7 +38,7 @@ export default function SignUp() {
         setErrorMessage("");
 
         if (password === confirmPassword) {
-            signUp({ name, email, password });
+            signUp({ firstName, lastName, email, password });
         } else {
             setErrorMessage("Password didn't match!")
         }
@@ -46,18 +46,18 @@ export default function SignUp() {
 
     // when onSubmit event fired and no error occured, navigate to the Home page
     useEffect(() => {
-        if (isSuccess) {
+        if (data) {
             navigate("/")
-        } else {
-            if (error) {
-                if ("status" in error) {
-                    const errMsgJSONString = 'error' in error ? error.error : JSON.stringify(error.data);
-                    const errMsgJSObj = JSON.parse(errMsgJSONString);
-                    setErrorMessage(errMsgJSObj.message);
-                }
+        }
+
+        if (error) {
+            if ("status" in error) {
+                const errMsgJSONString = 'error' in error ? error.error : JSON.stringify(error.data);
+                const errMsgJSObj = JSON.parse(errMsgJSONString);
+                setErrorMessage(errMsgJSObj.message);
             }
         }
-    }, [isSuccess, error, navigate])
+    }, [data, error, navigate])
 
     if (isLoading) {
         return <Loader />
@@ -65,7 +65,8 @@ export default function SignUp() {
 
     return (
         <FormCard
-            name={name}
+            firstName={firstName}
+            lastName={lastName}
             email={email}
             formName="SignUpForm"
             password={password}

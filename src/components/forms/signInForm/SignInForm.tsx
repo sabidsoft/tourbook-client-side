@@ -1,3 +1,4 @@
+import { inputStyle } from "../../../assets/styles/inputStyle";
 import FormErrorMessage from "../ui/formErrorMessage/FormErrorMessage";
 import FormInput from "../ui/formInput/FormInput";
 import FormSubmitButton from "../ui/formSubmitButton/FormSubmitButton";
@@ -18,6 +19,7 @@ export default function SignInForm({
                 name="email"
                 placeholder="Email"
                 value={email}
+                className={inputStyle}
                 onChange={onInputChange}
             />
             <FormInput
@@ -25,6 +27,7 @@ export default function SignInForm({
                 name="password"
                 placeholder="Password"
                 value={password}
+                className={inputStyle}
                 onChange={onInputChange}
             />
             {

@@ -25,7 +25,7 @@ export default function EditTour() {
     const [tags, setTags] = useState<string[]>(initialTags);
     const [errorMessage, setErrorMessage] = useState<string>("");
 
-    const [updateTour, { data, isLoading, isError, error }] = useUpdateTourMutation();
+    const [updateTour, { data, error, isLoading, isError }] = useUpdateTourMutation();
     const navigate = useNavigate();
 
     // title handler
@@ -129,10 +129,17 @@ export default function EditTour() {
         if (data) {
             navigate("/my-tours");
         }
+
         if (error) {
-            setErrorMessage("Something went wrong.");
+            if ("status" in error) {
+                const errMsgJSONString = 'error' in error ?
+                    error.error : JSON.stringify(error.data);
+
+                const errMsgJSObj = JSON.parse(errMsgJSONString);
+                setErrorMessage(errMsgJSObj.message);
+            }
         }
-    }, [data, error, navigate])
+    }, [data, error, navigate]);
 
     if (isLoading)
         return <Loader />;

@@ -1,5 +1,6 @@
 export interface SignUp {
-    name: string;
+    firstName: string;
+    lastName: string;
     email: string;
     password: string;
 }
@@ -7,4 +8,9 @@ export interface SignUp {
 export interface SignIn {
     email: string;
     password: string;
+}
+
+export interface ChangePassword {
+    currentPassword: string;
+    newPassword: string;
 }

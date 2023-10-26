@@ -1,8 +1,9 @@
+import { getToken } from "../../../../utils/getToken";
 import { userLoggedIn } from "../../auth/authSlice";
 import { apiSlice } from "../apiSlice/apiSlice";
-import { SignIn, SignUp } from "./types";
+import { ChangePassword, SignIn, SignUp } from "./types";
 
-export const authApi = apiSlice.injectEndpoints({
+export const userApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         signUp: builder.mutation<any, SignUp>({
             query: (data) => ({
@@ -57,7 +58,16 @@ export const authApi = apiSlice.injectEndpoints({
                 catch (err) { }
             }
         }),
+
+        changePassword: builder.mutation<any, ChangePassword>({
+            query: (data) => ({
+                url: '/api/v1/users/change-password',
+                method: 'POST',
+                body: data,
+                headers: { authorization: `Bearer ${getToken()}` }
+            })
+        })
     })
 })
 
-export const { useSignUpMutation, useSignInMutation } = authApi;
+export const { useSignUpMutation, useSignInMutation, useChangePasswordMutation } = userApi;

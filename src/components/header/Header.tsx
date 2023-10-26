@@ -43,18 +43,28 @@ export default function Header() {
                                 >
                                     Home
                                 </Link>
+
                                 <Link
                                     to='/add-tour'
                                     className="text-[#267CB5] font-medium text-lg mr-5"
                                 >
                                     Add Tour
                                 </Link>
+
                                 <Link
                                     to='/my-tours'
                                     className="text-[#267CB5] font-medium text-lg mr-5"
                                 >
                                     My Tours
                                 </Link>
+
+                                <Link
+                                    to='/account'
+                                    className="text-[#267CB5] font-medium text-lg mr-5"
+                                >
+                                    Account
+                                </Link>
+
                                 <button
                                     onClick={logout}
                                     className="text-[#267CB5] font-medium text-lg"
@@ -122,6 +132,7 @@ export default function Header() {
                             >
                                 Home
                             </Link>
+
                             <Link
                                 to='/add-tour'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
@@ -129,6 +140,7 @@ export default function Header() {
                             >
                                 Add Tour
                             </Link>
+
                             <Link
                                 to='/my-tours'
                                 onClick={() => setIsMenuOpen((prevState) => !prevState)}
@@ -136,6 +148,15 @@ export default function Header() {
                             >
                                 My Tours
                             </Link>
+
+                            <Link
+                                to='/account'
+                                onClick={() => setIsMenuOpen((prevState) => !prevState)}
+                                className="text-[#267CB5] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"
+                            >
+                                Account
+                            </Link>
+
                             <button
                                 onClick={logout}
                                 className="text-[#267CB5] font-medium text-lg text-center py-3 hover:bg-slate-500 duration-300"

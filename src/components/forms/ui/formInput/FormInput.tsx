@@ -1,4 +1,3 @@
-import { inputStyle } from "../../../../assets/styles/inputStyle";
 import { FormInputProps } from "./types";
 
 export default function FormInput({
@@ -6,6 +5,7 @@ export default function FormInput({
     name,
     placeholder,
     value,
+    className,
     onChange
 }: FormInputProps) {
 
@@ -16,7 +16,7 @@ export default function FormInput({
             name={name}
             value={value}
             onChange={onChange}
-            className={inputStyle}
+            className={className}
             placeholder={placeholder}
         />
     )

@@ -5,6 +5,8 @@ import Loader from "../../components/common/loader/Loader";
 import Pagination from "../../components/common/pagination/Pagination";
 import { useAppSelector } from "../../redux/app/hooks";
 import { useGetToursByUserQuery } from "../../redux/features/api/tourApi/tourApi";
+import { Link } from "react-router-dom";
+import LinkButton from "../../components/common/linkButton/LinkButton";
 
 export default function MyTours() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -30,7 +32,14 @@ export default function MyTours() {
         content = <ErrorMessage message="There is an error occured!" />;
 
     if (!isLoading && !isError && tours && tours.length === 0)
-        content = <ErrorMessage message='You have not create any tour yet.' />;
+        content = (
+            <>
+                <ErrorMessage message='Opps! You have not add any tour yet.' />
+                <div className="my-8 text-center">
+                    <LinkButton to="/add-tour" linkButtonName="Add Tour" />
+                </div>
+            </>
+        );
 
     if (!isLoading && !isError && tours && tours.length > 0)
         content =
@@ -56,7 +65,7 @@ export default function MyTours() {
                 <h2 className="text-3xl text-center font-medium my-5">
                     My Tours
                 </h2>
-                <hr />
+                <hr className="mb-3"/>
                 {content}
             </div>
         </div>

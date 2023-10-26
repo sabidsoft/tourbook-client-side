@@ -8,7 +8,8 @@ const haveAnAccount = "Already have an account? Sign In";
 const haveNotAnAccount = "Don't have an account? Sign Up";
 
 export default function FormCard({
-    name,
+    firstName,
+    lastName,
     email,
     password,
     confirmPassword,
@@ -42,7 +43,8 @@ export default function FormCard({
                         />
                         :
                         <SignUpForm
-                            name={name || ""} //or name={name as string}
+                            firstName={firstName || ""}
+                            lastName={lastName || ""}
                             email={email}
                             password={password}
                             confirmPassword={confirmPassword || ""}
