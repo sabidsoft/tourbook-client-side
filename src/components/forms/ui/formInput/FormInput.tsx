@@ -1,6 +1,7 @@
 import { FormInputProps } from "./types";
 
 export default function FormInput({
+    id,
     type,
     name,
     placeholder,
@@ -12,6 +13,7 @@ export default function FormInput({
     return (
         <input
             required
+            id={id}
             type={type}
             name={name}
             value={value}

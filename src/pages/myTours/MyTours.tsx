@@ -6,7 +6,7 @@ import Pagination from "../../components/common/pagination/Pagination";
 import { useAppSelector } from "../../redux/app/hooks";
 import { useGetToursByUserQuery } from "../../redux/features/api/tourApi/tourApi";
 import { Link } from "react-router-dom";
-import LinkButton from "../../components/common/linkButton/LinkButton";
+import { linkButtonStyle } from "../../assets/styles/linkButtonStyle";
 
 export default function MyTours() {
     const [currentPage, setCurrentPage] = useState(1);
@@ -36,7 +36,12 @@ export default function MyTours() {
             <>
                 <ErrorMessage message='Opps! You have not add any tour yet.' />
                 <div className="my-8 text-center">
-                    <LinkButton to="/add-tour" linkButtonName="Add Tour" />
+                    <Link
+                        to="/add-tour"
+                        className={linkButtonStyle}
+                    >
+                        Add Tour
+                    </Link>
                 </div>
             </>
         );
@@ -65,7 +70,7 @@ export default function MyTours() {
                 <h2 className="text-3xl text-center font-medium my-5">
                     My Tours
                 </h2>
-                <hr className="mb-3"/>
+                <hr className="mb-3" />
                 {content}
             </div>
         </div>

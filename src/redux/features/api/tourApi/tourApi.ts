@@ -20,6 +20,7 @@ export const tourApi = apiSlice.injectEndpoints({
             }),
             providesTags: (result, error, arg) => [{ type: 'Tour', id: arg }]
         }),
+        
         getToursByUser: builder.query<ToursResponse, { userId: string, page: number }>({
             query: ({ userId, page }) => ({
                 url: `/api/v1/tours?creatorId=${userId}&page=${page}&limit=${10}`,

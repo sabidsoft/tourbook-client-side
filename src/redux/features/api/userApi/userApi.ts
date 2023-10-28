@@ -1,7 +1,7 @@
 import { getToken } from "../../../../utils/getToken";
 import { userLoggedIn } from "../../auth/authSlice";
 import { apiSlice } from "../apiSlice/apiSlice";
-import { ChangePassword, SignIn, SignUp } from "./types";
+import { ChangePassword, SignIn, SignUp, UserResponse } from "./types";
 
 export const userApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -59,6 +59,24 @@ export const userApi = apiSlice.injectEndpoints({
             }
         }),
 
+        getUser: builder.query<UserResponse, string>({
+            query: (userId) => ({
+                url: `/api/v1/users/${userId}`,
+                headers: { authorization: `Bearer ${getToken()}` }
+            }),
+            providesTags: (result, error, arg) => [{ type: 'User', id: arg }]
+        }),
+
+        updateUser: builder.mutation<any, { userId: string, formData: FormData }>({
+            query: ({ userId, formData }) => ({
+                url: `/api/v1/users/${userId}`,
+                method: "PATCH",
+                body: formData,
+                headers: { authorization: `Bearer ${getToken()}` }
+            }),
+            invalidatesTags: ['User']
+        }),
+
         changePassword: builder.mutation<any, ChangePassword>({
             query: (data) => ({
                 url: '/api/v1/users/change-password',
@@ -66,8 +84,14 @@ export const userApi = apiSlice.injectEndpoints({
                 body: data,
                 headers: { authorization: `Bearer ${getToken()}` }
             })
-        })
+        }),
     })
 })
 
-export const { useSignUpMutation, useSignInMutation, useChangePasswordMutation } = userApi;
+export const {
+    useSignUpMutation,
+    useSignInMutation,
+    useGetUserQuery,
+    useUpdateUserMutation,
+    useChangePasswordMutation
+} = userApi;

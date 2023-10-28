@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, KeyboardEvent, useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, KeyboardEvent, useEffect, useState } from "react";
 import { inputStyle } from "../../assets/styles/inputStyle";
 import { useLocation, useNavigate } from "react-router-dom";
 import FormTagChip from "../../components/forms/ui/formTagChip/FormTagChip";
@@ -6,7 +6,6 @@ import FormErrorMessage from "../../components/forms/ui/formErrorMessage/FormErr
 import FormSubmitButton from "../../components/forms/ui/formSubmitButton/FormSubmitButton";
 import { useUpdateTourMutation } from "../../redux/features/api/tourApi/tourApi";
 import Loader from "../../components/common/loader/Loader";
-import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 
 export default function EditTour() {
     const location = useLocation();
@@ -15,7 +14,7 @@ export default function EditTour() {
         title: initialTitle,
         description: initialDescription,
         imageUrl: initialImageUrl,
-        tags: initialTags,
+        tags: initialTags
     } = location.state
 
     const [title, setTitle] = useState<string>(initialTitle);
@@ -25,7 +24,7 @@ export default function EditTour() {
     const [tags, setTags] = useState<string[]>(initialTags);
     const [errorMessage, setErrorMessage] = useState<string>("");
 
-    const [updateTour, { data, error, isLoading, isError }] = useUpdateTourMutation();
+    const [updateTour, { data, error, isLoading }] = useUpdateTourMutation();
     const navigate = useNavigate();
 
     // title handler
@@ -101,7 +100,7 @@ export default function EditTour() {
             return setErrorMessage('Please select an image.');
 
         if (tags.length < 1)
-            return setErrorMessage("Minimum a tag required.");
+            return setErrorMessage("Minimum a tag is required.");
 
         if (title.length < 3)
             return setErrorMessage("Title is too short.");
@@ -144,9 +143,6 @@ export default function EditTour() {
     if (isLoading)
         return <Loader />;
 
-    if (!isLoading && isError)
-        return <ErrorMessage message="There is an error occured!" />;
-
     return (
         <div className="mt-24 pb-8">
             <div className="w-[90%] sm:w-[570px] mx-auto py-5 px-6 shadow-md rounded-lg">
@@ -158,7 +154,7 @@ export default function EditTour() {
                 <form onSubmit={handleSubmit}>
                     <label htmlFor="title" className="text-lg mb-1 inline-block">Title</label>
                     <input
-                        type="title"
+                        type="text"
                         id="title"
                         placeholder="Enter Title"
                         required
@@ -229,7 +225,7 @@ export default function EditTour() {
                     </div>
 
                     {errorMessage && <FormErrorMessage message={errorMessage} />}
-                    <FormSubmitButton value="Submit" />
+                    <FormSubmitButton value="Save Changes" />
                 </form>
             </div>
         </div>

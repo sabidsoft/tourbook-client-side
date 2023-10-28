@@ -1,20 +1,33 @@
-import profilePic from "../../assets/images/default_profile.png"
-import LinkButton from "../../components/common/linkButton/LinkButton"
-import { useAppSelector } from "../../redux/app/hooks"
+import { Link } from "react-router-dom";
+import defaultAvatar from "../../assets/images/default_avatar.png";
+import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
+import Loader from "../../components/common/loader/Loader";
+import { useAppSelector } from "../../redux/app/hooks";
+import { useGetUserQuery } from "../../redux/features/api/userApi/userApi";
+import { linkButtonStyle } from "../../assets/styles/linkButtonStyle";
+
 
 export default function Account() {
-    const user = useAppSelector(state => state.auth.user);
+
+    const authUser = useAppSelector(state => state.auth.user);
+
+    const { data, isLoading, isError } = useGetUserQuery(authUser?._id as string);
+    const user = data?.data.user;
+
+    if (isLoading)
+        return <Loader />;
+
+    if (!isLoading && isError)
+        return <ErrorMessage message="Opps! Something went wrong." />;
 
     return (
         <div className="mx-5 md:mx-0 mt-32 mb-8">
             <div className="w-full md:w-[700px] mx-auto">
                 <div className="mb-16 flex flex-col items-center">
                     <img
-                        src={profilePic}
-                        alt="Profile Pic"
-                        width={140}
-                        height={140}
-                        className="rounded-full"
+                        src={user?.avatar ? user.avatar : defaultAvatar}
+                        alt="Avatar"
+                        className="object-cover w-[150px] h-[150px] border-[#267CB5] border-4 rounded-full p-1"
                     />
                     <h2 className="text-3xl font-semibold mt-4">{user?.firstName}</h2>
                 </div>
@@ -34,14 +47,19 @@ export default function Account() {
                 </p>
                 <hr />
                 <div className="flex justify-between mt-16">
-                    <LinkButton
+                    <Link
                         to="/change-password"
-                        linkButtonName="Change Password"
-                    />
-                    <LinkButton
+                        className={linkButtonStyle}
+                    >
+                        Change Password
+                    </Link>
+                    <Link
                         to="/edit-profile"
-                        linkButtonName="Edit Account"
-                    />
+                        className={linkButtonStyle}
+                        state={user}
+                    >
+                        Edit Profile
+                    </Link>
                 </div>
             </div>
         </div>
