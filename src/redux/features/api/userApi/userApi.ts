@@ -1,7 +1,7 @@
 import { getToken } from "../../../../utils/getToken";
 import { userLoggedIn } from "../../auth/authSlice";
 import { apiSlice } from "../apiSlice/apiSlice";
-import { ChangePassword, SignIn, SignUp, UserResponse } from "./types";
+import { SignUp, UserResponse } from "./types";
 
 export const userApi = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
@@ -32,7 +32,7 @@ export const userApi = apiSlice.injectEndpoints({
             }
         }),
 
-        signIn: builder.mutation<any, SignIn>({
+        signIn: builder.mutation<any, { email: string, password: string }>({
             query: (data) => ({
                 url: '/api/v1/users/signin',
                 method: 'POST',
@@ -77,13 +77,34 @@ export const userApi = apiSlice.injectEndpoints({
             invalidatesTags: ['User']
         }),
 
-        changePassword: builder.mutation<any, ChangePassword>({
+        changePassword: builder.mutation<any, { currentPassword: string, newPassword: string }>({
             query: (data) => ({
                 url: '/api/v1/users/change-password',
                 method: 'POST',
                 body: data,
                 headers: { authorization: `Bearer ${getToken()}` }
             })
+        }),
+
+        forgotPassword: builder.mutation<any, { email: string }>({
+            query: (data) => ({
+                url: '/api/v1/users/forgot-password',
+                method: 'POST',
+                body: data,
+                headers: { authorization: `Bearer ${getToken()}` }
+            })
+        }),
+
+        resetPassword: builder.mutation<any, { password: string, resetPasswordToken: string, userId: string }>({
+            query: ({ password, resetPasswordToken, userId }) => {
+                console.log(password +" " +resetPasswordToken+ " " +userId)
+                return ({
+                    url: `/api/v1/users/reset-password?resetPasswordToken=${resetPasswordToken}&userId=${userId}`,
+                    method: 'POST',
+                    body: { password },
+                    headers: { authorization: `Bearer ${getToken()}` }
+                })
+            }
         }),
     })
 })
@@ -93,5 +114,7 @@ export const {
     useSignInMutation,
     useGetUserQuery,
     useUpdateUserMutation,
-    useChangePasswordMutation
+    useChangePasswordMutation,
+    useForgotPasswordMutation,
+    useResetPasswordMutation
 } = userApi;

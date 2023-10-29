@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { inputStyle } from "../../../assets/styles/inputStyle";
 import FormErrorMessage from "../ui/formErrorMessage/FormErrorMessage";
 import FormInput from "../ui/formInput/FormInput";
@@ -22,6 +23,7 @@ export default function SignInForm({
                 className={inputStyle}
                 onChange={onInputChange}
             />
+
             <FormInput
                 type="password"
                 name="password"
@@ -30,10 +32,17 @@ export default function SignInForm({
                 className={inputStyle}
                 onChange={onInputChange}
             />
-            {
-                errorMessage &&
-                <FormErrorMessage message={errorMessage} />
-            }
+
+            <div className="text-center mb-5">
+                <Link
+                    to="/forgot-password"
+                    className="text-[#4761A7] hover:underline"
+                >
+                    Forgot password?
+                </Link>
+            </div>
+
+            {errorMessage && <FormErrorMessage message={errorMessage} />}
             <FormSubmitButton value="SIGN IN" />
         </form>
     )

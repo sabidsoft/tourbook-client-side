@@ -32,6 +32,7 @@ export default function FormCard({
                         {formName === "SignInForm" ? "Sign In" : "Sign Up"}
                     </p>
                 </div>
+                
                 {
                     formName === "SignInForm" ?
                         <SignInForm
@@ -53,6 +54,7 @@ export default function FormCard({
                             onInputChange={onInputChange}
                         />
                 }
+
                 <FormLink
                     to={formName === "SignInForm" ? "/signup" : "/signin"}
                     text={formName === "SignInForm" ? haveNotAnAccount : haveAnAccount}

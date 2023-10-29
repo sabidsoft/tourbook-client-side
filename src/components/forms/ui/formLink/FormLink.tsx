@@ -10,6 +10,7 @@ export default function FormLink({ to, text }: FormLinkProps) {
                 text-center
                 text-[#4761A7]
                 mb-6
+                hover:underline
             "
         >
             {text}

@@ -18,7 +18,7 @@ export default function SignUp() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState(initialState);
     const [errorMessage, setErrorMessage] = useState("");
-    const [signUp, { data, error, isLoading }] = useSignUpMutation();
+    const [signUp, { isSuccess, error, isLoading }] = useSignUpMutation();
 
     const { firstName, lastName, email, password, confirmPassword } = formData;
 
@@ -40,13 +40,12 @@ export default function SignUp() {
         if (password === confirmPassword) {
             signUp({ firstName, lastName, email, password });
         } else {
-            setErrorMessage("Password didn't match!")
+            setErrorMessage("Password didn't match.")
         }
     }
 
-    // when onSubmit event fired and no error occured, navigate to the Home page
     useEffect(() => {
-        if (data) {
+        if (isSuccess) {
             navigate("/")
         }
 
@@ -57,7 +56,7 @@ export default function SignUp() {
                 setErrorMessage(errMsgJSObj.message);
             }
         }
-    }, [data, error, navigate])
+    }, [isSuccess, error, navigate])
 
     if (isLoading) {
         return <Loader />

@@ -6,6 +6,7 @@ import FormErrorMessage from "../../components/forms/ui/formErrorMessage/FormErr
 import FormSubmitButton from "../../components/forms/ui/formSubmitButton/FormSubmitButton";
 import { useChangePasswordMutation } from "../../redux/features/api/userApi/userApi";
 import { useNavigate } from "react-router-dom";
+import Loader from "../../components/common/loader/Loader";
 
 // initialState
 const initialState: InitialState = {
@@ -17,15 +18,9 @@ export default function ChangePassword() {
     const navigate = useNavigate();
     const [formData, setFormData] = useState(initialState);
     const [errorMessage, setErrorMessage] = useState("");
-    const [changePassword, { data, error }] = useChangePasswordMutation();
+    const [changePassword, { isSuccess, error, isLoading }] = useChangePasswordMutation();
 
-    // handling form submit
-    const onFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
-        e.preventDefault();
-        setErrorMessage("");
-
-        changePassword(formData);
-    };
+    const { currentPassword, newPassword } = formData;
 
     // handling input elements values
     const onInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -37,8 +32,32 @@ export default function ChangePassword() {
         });
     };
 
+    // handling form submit
+    const onFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
+        e.preventDefault();
+        setErrorMessage("");
+
+        if (!currentPassword)
+            return setErrorMessage("Current password is required.");
+
+        if (!newPassword)
+            return setErrorMessage("New password is required.");
+
+        if (currentPassword === newPassword)
+            return setErrorMessage("New password must be different.");
+
+        if (newPassword.length < 6)
+            return setErrorMessage("New password should be at least 6 characters long.");
+
+        if (newPassword.length > 40)
+            return setErrorMessage("Password is too long.");
+
+        changePassword(formData);
+    };
+
+
     useEffect(() => {
-        if (data) {
+        if (isSuccess) {
             navigate("/account");
         }
 
@@ -51,7 +70,10 @@ export default function ChangePassword() {
                 setErrorMessage(errMsgJSObj.message);
             }
         }
-    }, [data, error, navigate])
+    }, [isSuccess, error, navigate]);
+
+    if (isLoading)
+        return <Loader />
 
     return (
         <div className="mt-24 pb-8">
@@ -66,7 +88,7 @@ export default function ChangePassword() {
                         type="password"
                         name="currentPassword"
                         placeholder="Current Password"
-                        value={formData.currentPassword}
+                        value={currentPassword}
                         className={inputStyle}
                         onChange={onInputChange}
                     />
@@ -75,7 +97,7 @@ export default function ChangePassword() {
                         type="password"
                         name="newPassword"
                         placeholder="New Password"
-                        value={formData.newPassword}
+                        value={newPassword}
                         className={inputStyle}
                         onChange={onInputChange}
                     />

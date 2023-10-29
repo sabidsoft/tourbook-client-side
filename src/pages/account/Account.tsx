@@ -8,7 +8,6 @@ import { linkButtonStyle } from "../../assets/styles/linkButtonStyle";
 
 
 export default function Account() {
-
     const authUser = useAppSelector(state => state.auth.user);
 
     const { data, isLoading, isError } = useGetUserQuery(authUser?._id as string);
