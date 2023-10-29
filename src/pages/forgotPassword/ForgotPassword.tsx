@@ -6,12 +6,13 @@ import { inputStyle } from "../../assets/styles/inputStyle";
 import { useForgotPasswordMutation } from "../../redux/features/api/userApi/userApi";
 import Loader from "../../components/common/loader/Loader";
 import validation from "./validation";
+import useTitle from "../../hooks/useTitle";
 
 export default function ForgotPassword() {
+    useTitle("Forgot Password");
     const [email, setEmail] = useState("");
     const [isEmailSent, setIsEmailSent] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-
     const [forgotPassword, { isSuccess, error, isLoading }] = useForgotPasswordMutation();
 
     const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {

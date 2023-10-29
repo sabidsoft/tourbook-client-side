@@ -8,6 +8,7 @@ import { useChangePasswordMutation } from "../../redux/features/api/userApi/user
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/common/loader/Loader";
 import validation from "./validation";
+import useTitle from "../../hooks/useTitle";
 
 // initialState
 const initialState: InitialState = {
@@ -16,6 +17,7 @@ const initialState: InitialState = {
 }
 
 export default function ChangePassword() {
+    useTitle("Change Password");
     const navigate = useNavigate();
     const [formData, setFormData] = useState(initialState);
     const [errorMessage, setErrorMessage] = useState("");

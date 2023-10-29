@@ -7,6 +7,7 @@ import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 
 export default function RelatedTours({ tags, currentTourId }: RelatedToursProps) {
     const { data, isLoading, isError } = useGetRelatedToursQuery({ tags, currentTourId });
+
     const tours = data?.data.tours;
 
     let content;

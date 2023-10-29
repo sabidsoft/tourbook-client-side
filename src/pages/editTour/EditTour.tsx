@@ -7,8 +7,11 @@ import FormSubmitButton from "../../components/forms/ui/formSubmitButton/FormSub
 import { useUpdateTourMutation } from "../../redux/features/api/tourApi/tourApi";
 import Loader from "../../components/common/loader/Loader";
 import validation from "./validation";
+import useTitle from "../../hooks/useTitle";
 
 export default function EditTour() {
+    useTitle("Edit Tour");
+    const navigate = useNavigate();
     const location = useLocation();
     const {
         _id: tourId,
@@ -24,9 +27,7 @@ export default function EditTour() {
     const [tagInput, setTagInput] = useState<string>("");
     const [tags, setTags] = useState<string[]>(initialTags);
     const [errorMessage, setErrorMessage] = useState<string>("");
-
     const [updateTour, { isSuccess, error, isLoading }] = useUpdateTourMutation();
-    const navigate = useNavigate();
 
     // title handler
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {

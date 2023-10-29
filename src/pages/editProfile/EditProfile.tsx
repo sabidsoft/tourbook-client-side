@@ -11,8 +11,11 @@ import { useUpdateUserMutation } from "../../redux/features/api/userApi/userApi"
 import { useLocation, useNavigate } from "react-router-dom";
 import Loader from "../../components/common/loader/Loader";
 import validation from "./validation";
+import useTitle from "../../hooks/useTitle";
 
 export default function EditProfile() {
+    useTitle("Edit Profile");
+    const navigate = useNavigate();
     const location = useLocation();
     const {
         _id: userId,
@@ -30,7 +33,6 @@ export default function EditProfile() {
         avatar: initialAvatar
     }
 
-    const navigate = useNavigate();
     const [inputsData, setInputsData] = useState(initialState);
     const [errorMessage, setErrorMessage] = useState<string>("");
     const [updateUser, { data, error, isLoading }] = useUpdateUserMutation();

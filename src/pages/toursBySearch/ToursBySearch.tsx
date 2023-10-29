@@ -6,16 +6,17 @@ import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 import SearchBar from "../../components/common/searchBar/SearchBar";
 import ToursCard from "../../components/cards/toursCard/ToursCard";
 import Pagination from "../../components/common/pagination/Pagination";
+import useTitle from "../../hooks/useTitle";
 
 export default function ToursBySearch() {
-    const [currentPage, setCurrentPage] = useState(1);
+    useTitle("Tours By Search");
     const navigate = useNavigate();
-
+    const [currentPage, setCurrentPage] = useState(1);
     const [searchParams] = useSearchParams();
     const searchQuery = searchParams.get("search_query");
     const [searchText, setSearchText] = useState(searchQuery || "");
-
     const { data, isLoading, isError } = useGetToursBySearchQuery({ search: searchQuery as string, page: currentPage });
+    
     const tours = data?.data.tours;
 
     const pagination = data?.data.pagination;

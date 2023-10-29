@@ -7,12 +7,14 @@ import { useAppSelector } from "../../redux/app/hooks";
 import { useGetToursByUserQuery } from "../../redux/features/api/tourApi/tourApi";
 import { Link } from "react-router-dom";
 import { linkButtonStyle } from "../../assets/styles/linkButtonStyle";
+import useTitle from "../../hooks/useTitle";
 
 export default function MyTours() {
+    useTitle("My Tours");
     const [currentPage, setCurrentPage] = useState(1);
     const user = useAppSelector(state => state.auth.user);
-
     const { data, isLoading, isError } = useGetToursByUserQuery({ userId: user?._id as string, page: currentPage });
+
     const tours = data?.data.tours;
 
     const pagination = data?.data.pagination;

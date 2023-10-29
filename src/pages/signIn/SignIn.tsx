@@ -5,6 +5,7 @@ import { useSignInMutation } from "../../redux/features/api/userApi/userApi";
 import FormCard from "../../components/cards/formCard/FormCard";
 import validation from "./validation";
 import { InitialState } from "./types";
+import useTitle from "../../hooks/useTitle";
 
 // initialState
 const initialState: InitialState = {
@@ -13,6 +14,7 @@ const initialState: InitialState = {
 }
 
 export default function SignIn() {
+    useTitle("Sign In");
     const navigate = useNavigate();
     const location = useLocation();
     const [formData, setFormData] = useState(initialState);

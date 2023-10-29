@@ -5,17 +5,18 @@ import Loader from "../../components/common/loader/Loader";
 import { useCreateTourMutation } from "../../redux/features/api/tourApi/tourApi";
 import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 import validation from "./validation";
+import useTitle from "../../hooks/useTitle";
 
 export default function AddTour() {
+    useTitle("Add Tour");
+    const navigate = useNavigate();
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
     const [image, setImage] = useState<File | null>(null);
     const [tagInput, setTagInput] = useState<string>("");
     const [tags, setTags] = useState<string[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
-
     const [createTour, { isSuccess, isLoading, isError, error }] = useCreateTourMutation();
-    const navigate = useNavigate();
 
     // title handler
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {

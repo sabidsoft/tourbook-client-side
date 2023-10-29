@@ -6,13 +6,15 @@ import Loader from "../../components/common/loader/Loader";
 import { useGetToursQuery } from "../../redux/features/api/tourApi/tourApi";
 import SearchBar from "../../components/common/searchBar/SearchBar";
 import Pagination from "../../components/common/pagination/Pagination";
+import useTitle from "../../hooks/useTitle";
 
 export default function Home() {
+    useTitle("Home");
+    const navigate = useNavigate();
     const [searchText, setSearchText] = useState("");
     const [currentPage, setCurrentPage] = useState(1);
-    const navigate = useNavigate();
-
     const { data, isLoading, isError } = useGetToursQuery(currentPage);
+
     const tours = data?.data.tours;
 
     const pagination = data?.data.pagination;

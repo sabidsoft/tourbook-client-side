@@ -8,6 +8,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import { useResetPasswordMutation } from "../../redux/features/api/userApi/userApi";
 import Loader from "../../components/common/loader/Loader";
 import validation from "./validation";
+import useTitle from "../../hooks/useTitle";
 
 // initialState
 const initialState: InitialState = {
@@ -16,6 +17,7 @@ const initialState: InitialState = {
 }
 
 export default function ResetPassword() {
+    useTitle("Reset Password");
     const [formData, setFormData] = useState(initialState);
     const [isPasswordReset, setIsPasswordReset] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");

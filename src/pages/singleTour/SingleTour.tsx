@@ -6,11 +6,13 @@ import { LuCalendarDays } from "react-icons/lu";
 import moment from "moment";
 import RelatedTours from "../relatedTours/RelatedTours";
 import LikeTour from "../../components/common/likeTour/LikeTour";
+import useTitle from "../../hooks/useTitle";
 
 export default function SingleTour() {
+    useTitle("Tour");
     const { tourId } = useParams();
-
     const { data, isLoading, isError } = useGetTourQuery(tourId as string);
+
     const tour = data?.data.tour;
 
     if (isLoading)

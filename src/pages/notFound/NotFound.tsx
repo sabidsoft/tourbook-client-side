@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../../components/common/button/Button";
+import useTitle from "../../hooks/useTitle";
 
 export default function NotFound() {
+    useTitle("Not Found");
     const navigate = useNavigate();
 
     // Go backward

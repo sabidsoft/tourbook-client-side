@@ -5,12 +5,14 @@ import Loader from "../../components/common/loader/Loader";
 import { useAppSelector } from "../../redux/app/hooks";
 import { useGetUserQuery } from "../../redux/features/api/userApi/userApi";
 import { linkButtonStyle } from "../../assets/styles/linkButtonStyle";
+import useTitle from "../../hooks/useTitle";
 
 
 export default function Account() {
+    useTitle("Account");
     const authUser = useAppSelector(state => state.auth.user);
-
     const { data, isLoading, isError } = useGetUserQuery(authUser?._id as string);
+
     const user = data?.data.user;
 
     if (isLoading)
