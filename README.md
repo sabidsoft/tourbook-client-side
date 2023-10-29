@@ -1,4 +1,4 @@
-# Your Web Application Name
+# Tourbook
 
 ## Overview
 This web application offers a user-friendly platform for various tour-related functionalities and user account management. Users can create an account, sign in securely, and manage their profiles with ease. With a robust set of features, users can effortlessly navigate and engage with tour-related content.
@@ -15,3 +15,32 @@ The key functionalities include:
 - Redux
 - RTK Query
 - Tailwind CSS
+
+## Features
+### User Authentication
+- Create an Account
+- Sign In
+- Forgot Password
+- Change Password
+- Reset Password
+
+### Profile Management
+- Edit Profile Information
+
+### Tour Post Management
+- Create Tour Post
+- Edit Own Tour Post
+- Delete Own Tour Post
+- Like Tour Post
+
+### Search Functionality
+- Search Tours by Tour Title
+- Search Tours by Tag Name
+
+### Visitor Access
+- Read Tour Posts
+- Search Tours by Tour Title
+- Search Tours by Tag Name
+
+### Responsive Design
+- Fully Responsive Design to Ensure Compatibility Across Devices
