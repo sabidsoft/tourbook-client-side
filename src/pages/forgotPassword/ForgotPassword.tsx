@@ -5,6 +5,7 @@ import FormSubmitButton from "../../components/forms/ui/formSubmitButton/FormSub
 import { inputStyle } from "../../assets/styles/inputStyle";
 import { useForgotPasswordMutation } from "../../redux/features/api/userApi/userApi";
 import Loader from "../../components/common/loader/Loader";
+import validation from "./validation";
 
 export default function ForgotPassword() {
     const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ export default function ForgotPassword() {
     const [forgotPassword, { isSuccess, error, isLoading }] = useForgotPasswordMutation();
 
     const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
-        setEmail(e.target.value)
+        setEmail(e.target.value);
     }
 
     // handling form submit
@@ -22,23 +23,28 @@ export default function ForgotPassword() {
         e.preventDefault();
         setErrorMessage("");
 
-        if (!email)
-            return setErrorMessage("Email is required.");
+        // get frontend form validation error message
+        const frontendValidationErrorMessage = validation(email);
+
+        // set frontend form validation error message
+        if (frontendValidationErrorMessage)
+            return setErrorMessage(frontendValidationErrorMessage);
 
         forgotPassword({ email });
     };
 
     useEffect(() => {
         if (isSuccess) {
-            setIsEmailSent(true)
+            setIsEmailSent(true);
         }
 
         if (error) {
             if ("status" in error) {
-                const errMsgJSONString = 'error' in error ?
-                    error.error : JSON.stringify(error.data);
-
+                // get backend form validation error message
+                const errMsgJSONString = 'error' in error ? error.error : JSON.stringify(error.data);
                 const errMsgJSObj = JSON.parse(errMsgJSONString);
+
+                // set backend form validation error message
                 setErrorMessage(errMsgJSObj.message);
             }
         }

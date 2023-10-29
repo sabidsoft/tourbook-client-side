@@ -17,10 +17,10 @@ export default function MyToursCard({ tour }: MyToursCardProps) {
     }
 
     if (isLoading)
-        return <Loader />
+        return <Loader />;
 
     if (isError)
-        return <ErrorMessage message="There is an error occured!" />
+        return <ErrorMessage message="There is an error occured!" />;
 
     return (
         <div key={_id} className="flex flex-col md:flex-row shadow-md rounded-lg mt-3 bg-[#F4F4F4]">
@@ -31,7 +31,7 @@ export default function MyToursCard({ tour }: MyToursCardProps) {
             />
             <div className="w-full md:w-[65%] flex justify-between items-center px-8 py-8 md:py-0">
                 <div>
-                    <h2 className="text-xl text-[#404756] font-semibold">
+                    <h2 className="capitalize text-xl text-[#404756] font-semibold">
                         {title}
                     </h2>
                     <p className="">

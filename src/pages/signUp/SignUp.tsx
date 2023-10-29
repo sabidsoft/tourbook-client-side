@@ -4,6 +4,7 @@ import Loader from "../../components/common/loader/Loader";
 import { InitialState } from "./types";
 import { useSignUpMutation } from "../../redux/features/api/userApi/userApi";
 import FormCard from "../../components/cards/formCard/FormCard";
+import validation from "./validation";
 
 // initialState
 const initialState: InitialState = {
@@ -29,7 +30,7 @@ export default function SignUp() {
         setFormData({
             ...formData,
             [name]: value
-        });
+        })
     }
 
     // handling form submit
@@ -37,29 +38,36 @@ export default function SignUp() {
         e.preventDefault();
         setErrorMessage("");
 
-        if (password === confirmPassword) {
-            signUp({ firstName, lastName, email, password });
-        } else {
-            setErrorMessage("Password didn't match.")
-        }
+        // get frontend form validation error message
+        const frontendValidationErrorMessage = validation(firstName, lastName, email, password, confirmPassword);
+
+        // set frontend form validation error message
+        if (frontendValidationErrorMessage)
+            return setErrorMessage(frontendValidationErrorMessage);
+
+        // create a new user
+        signUp({ firstName, lastName, email, password });
     }
 
     useEffect(() => {
         if (isSuccess) {
-            navigate("/")
+            navigate("/");
         }
 
         if (error) {
             if ("status" in error) {
+                // get backend form validation error message
                 const errMsgJSONString = 'error' in error ? error.error : JSON.stringify(error.data);
                 const errMsgJSObj = JSON.parse(errMsgJSONString);
+
+                // set backend form validation error message
                 setErrorMessage(errMsgJSObj.message);
             }
         }
     }, [isSuccess, error, navigate])
 
     if (isLoading) {
-        return <Loader />
+        return <Loader />;
     }
 
     return (

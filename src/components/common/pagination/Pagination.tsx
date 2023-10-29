@@ -5,7 +5,7 @@ export default function Pagination({ totalPage, currentPage, handlePageChange }:
 
     // maxPageButtons for smartphone
     if (window.innerWidth <= 480) {
-        maxPageButtons = 5
+        maxPageButtons = 5;
     }
 
     const halfMaxButtons = Math.floor(maxPageButtons / 2);

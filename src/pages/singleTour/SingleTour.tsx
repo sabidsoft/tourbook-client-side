@@ -22,7 +22,7 @@ export default function SingleTour() {
     return (
         <div className="sm:w-[80%] flex flex-col justify-center items-center lg:flex-row lg:justify-between lg:items-start mx-auto px-5 sm:px-0">
             <div className="lg:w-[74%]">
-                <h2 className="text-center text-3xl text-[#38404C] font-bold py-5">
+                <h2 className="capitalize text-center text-3xl text-[#38404C] font-bold py-5">
                     {tour?.title}
                 </h2>
                 <img

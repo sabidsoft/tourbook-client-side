@@ -22,11 +22,11 @@ export default function FormCard({
     return (
         <div className="mt-36 pb-8">
             <div className="w-[90%] sm:w-[470px] mx-auto py-5 px-6 shadow-md rounded-lg">
-                <div className="flex flex-col justify-center items-center mb-8">
+                <div className="flex flex-col justify-center items-center mb-10">
                     <img
                         src={formImage}
                         alt="Login img"
-                        className="w-14 border-4 p-1 rounded-full"
+                        className="w-14 border-4 p-1 mb-2 rounded-full"
                     />
                     <p className="font-bold text-[#6B6F70]">
                         {formName === "SignInForm" ? "Sign In" : "Sign Up"}

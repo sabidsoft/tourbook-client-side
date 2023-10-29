@@ -1,4 +1,3 @@
-import { getToken } from "../../../../utils/getToken";
 import { userLoggedIn } from "../../auth/authSlice";
 import { apiSlice } from "../apiSlice/apiSlice";
 import { SignUp, UserResponse } from "./types";
@@ -61,8 +60,7 @@ export const userApi = apiSlice.injectEndpoints({
 
         getUser: builder.query<UserResponse, string>({
             query: (userId) => ({
-                url: `/api/v1/users/${userId}`,
-                headers: { authorization: `Bearer ${getToken()}` }
+                url: `/api/v1/users/${userId}`
             }),
             providesTags: (result, error, arg) => [{ type: 'User', id: arg }]
         }),
@@ -71,8 +69,7 @@ export const userApi = apiSlice.injectEndpoints({
             query: ({ userId, formData }) => ({
                 url: `/api/v1/users/${userId}`,
                 method: "PATCH",
-                body: formData,
-                headers: { authorization: `Bearer ${getToken()}` }
+                body: formData
             }),
             invalidatesTags: ['User']
         }),
@@ -81,8 +78,7 @@ export const userApi = apiSlice.injectEndpoints({
             query: (data) => ({
                 url: '/api/v1/users/change-password',
                 method: 'POST',
-                body: data,
-                headers: { authorization: `Bearer ${getToken()}` }
+                body: data
             })
         }),
 
@@ -90,22 +86,20 @@ export const userApi = apiSlice.injectEndpoints({
             query: (data) => ({
                 url: '/api/v1/users/forgot-password',
                 method: 'POST',
-                body: data,
-                headers: { authorization: `Bearer ${getToken()}` }
+                body: data
             })
         }),
 
         resetPassword: builder.mutation<any, { password: string, resetPasswordToken: string, userId: string }>({
             query: ({ password, resetPasswordToken, userId }) => {
-                console.log(password +" " +resetPasswordToken+ " " +userId)
+                console.log(password + " " + resetPasswordToken + " " + userId)
                 return ({
                     url: `/api/v1/users/reset-password?resetPasswordToken=${resetPasswordToken}&userId=${userId}`,
                     method: 'POST',
-                    body: { password },
-                    headers: { authorization: `Bearer ${getToken()}` }
+                    body: { password }
                 })
             }
-        }),
+        })
     })
 })
 

@@ -7,12 +7,13 @@ import { InitialState } from "./types";
 import { Link, useSearchParams } from "react-router-dom";
 import { useResetPasswordMutation } from "../../redux/features/api/userApi/userApi";
 import Loader from "../../components/common/loader/Loader";
+import validation from "./validation";
 
 // initialState
 const initialState: InitialState = {
     password: "",
-    confirmPassword: "",
-};
+    confirmPassword: ""
+}
 
 export default function ResetPassword() {
     const [formData, setFormData] = useState(initialState);
@@ -33,29 +34,22 @@ export default function ResetPassword() {
         setFormData({
             ...formData,
             [name]: value
-        });
-    };
+        })
+    }
 
     // handling form submit
     const onFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
         setErrorMessage("");
 
-        if (!password)
-            return setErrorMessage("Password is required.");
+        // get frontend form validation error message
+        const frontendValidationErrorMessage = validation(password, confirmPassword);
 
-        if (password.length < 6)
-            return setErrorMessage("Password should be at least 6 characters long.");
+        // set frontend form validation error message
+        if (frontendValidationErrorMessage)
+            return setErrorMessage(frontendValidationErrorMessage);
 
-        if (password.length > 40)
-            return setErrorMessage("Password is too long.");
-
-        if (!confirmPassword)
-            return setErrorMessage("Confirm password is required.");
-
-        if (password !== confirmPassword)
-            return setErrorMessage("Password and confirm password didn't match.");
-
+        // reset password
         resetPassword({ password, resetPasswordToken, userId });
     };
 
@@ -66,8 +60,11 @@ export default function ResetPassword() {
 
         if (error) {
             if ("status" in error) {
+                // get backend form validation error message
                 const errMsgJSONString = 'error' in error ? error.error : JSON.stringify(error.data);
                 const errMsgJSObj = JSON.parse(errMsgJSONString);
+
+                // set backend form validation error message
                 setErrorMessage(errMsgJSObj.message);
             }
         }

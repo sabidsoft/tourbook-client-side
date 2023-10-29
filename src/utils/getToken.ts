@@ -4,7 +4,7 @@ export const getToken = (): string => {
 
     if (localAuth) {
         auth = JSON.parse(localAuth);
-        return auth.token
+        return auth.token;
     }
 
     return "";

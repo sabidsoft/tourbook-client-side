@@ -1,9 +1,10 @@
 import { FormEvent, ChangeEvent, useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loader from "../../components/common/loader/Loader";
-import { InitialState } from "./types";
 import { useSignInMutation } from "../../redux/features/api/userApi/userApi";
 import FormCard from "../../components/cards/formCard/FormCard";
+import validation from "./validation";
+import { InitialState } from "./types";
 
 // initialState
 const initialState: InitialState = {
@@ -25,6 +26,14 @@ export default function SignIn() {
         e.preventDefault();
         setErrorMessage("");
 
+        // get frontend form validation error message
+        const frontendValidationErrorMessage = validation(email, password);
+
+        // set frontend form validation error message
+        if (frontendValidationErrorMessage)
+            return setErrorMessage(frontendValidationErrorMessage);
+
+        // login user
         signIn({ email, password });
     }
 
@@ -35,32 +44,30 @@ export default function SignIn() {
         setFormData({
             ...formData,
             [name]: value
-        });
+        })
     }
 
-    // when onSubmit event fired and no error occured, navigate to the Home page
     useEffect(() => {
         if (data) {
-            navigate(location.state?.from?.pathname || "/", { replace: true })
+            navigate(location.state?.from?.pathname || "/", { replace: true });
         }
 
         if (error) {
             if ("status" in error) {
-                const errMsgJSONString = 'error' in error ?
-                    error.error : JSON.stringify(error.data);
-
+                // get backend form validation error message
+                const errMsgJSONString = 'error' in error ? error.error : JSON.stringify(error.data);
                 const errMsgJSObj = JSON.parse(errMsgJSONString);
+
+                // set backend form validation error message
                 setErrorMessage(errMsgJSObj.message);
             }
         }
     }, [data, error, navigate, location.state?.from?.pathname])
 
-    // return Loader component during to data fetching
     if (isLoading) {
-        return <Loader />
+        return <Loader />;
     }
 
-    // return signin FormCard component after data fetching
     return (
         <FormCard
             email={email}

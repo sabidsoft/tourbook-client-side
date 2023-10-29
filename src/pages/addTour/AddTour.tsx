@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Loader from "../../components/common/loader/Loader";
 import { useCreateTourMutation } from "../../redux/features/api/tourApi/tourApi";
 import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
+import validation from "./validation";
 
 export default function AddTour() {
     const [title, setTitle] = useState<string>("");
@@ -13,7 +14,7 @@ export default function AddTour() {
     const [tags, setTags] = useState<string[]>([]);
     const [errorMessage, setErrorMessage] = useState<string>("");
 
-    const [createTour, { data, isLoading, isError, error }] = useCreateTourMutation();
+    const [createTour, { isSuccess, isLoading, isError, error }] = useCreateTourMutation();
     const navigate = useNavigate();
 
     // title handler
@@ -78,49 +79,40 @@ export default function AddTour() {
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
-        // form validation
-        if (!title)
-            return setErrorMessage('Please enter title.');
+        // get frontend form validation error message
+        const frontendValidationErrorMessage = validation(title, description, image, tags);
 
-        if (!description)
-            return setErrorMessage('Please enter description.');
-
-        if (!image)
-            return setErrorMessage('Please select an image.');
-
-        if (tags.length < 1)
-            return setErrorMessage("Minimum a tag required.");
-
-        if (title.length < 3)
-            return setErrorMessage("Title is too short.");
-
-        if (title.length > 55)
-            return setErrorMessage("Title is too long.");
-
-        if (description.length < 100)
-            return setErrorMessage("Description is too short. Minimum 100 characters required.");
-
-        if (description.length > 10000)
-            return setErrorMessage("Description is too long. Maximum 10000 characters allowed.");
+        // set frontend form validation error message
+        if (frontendValidationErrorMessage)
+            return setErrorMessage(frontendValidationErrorMessage);
 
         // Create a FormData object and append fields to it
         const formData = new FormData();
         formData.append("title", title);
         formData.append("description", description);
-        formData.append("image", image);
+        formData.append("image", image as File);
         formData.append("tags", JSON.stringify(tags));
 
+        // create new tour
         createTour(formData);
     }
 
     useEffect(() => {
-        if (data) {
+        if (isSuccess) {
             navigate("/");
         }
+
         if (error) {
-            setErrorMessage("Something went wrong.");
+            if ("status" in error) {
+                // get backend form validation error message
+                const errMsgJSONString = 'error' in error ? error.error : JSON.stringify(error.data);
+                const errMsgJSObj = JSON.parse(errMsgJSONString);
+
+                // set backend form validation error message
+                setErrorMessage(errMsgJSObj.message);
+            }
         }
-    }, [data, error, navigate])
+    }, [isSuccess, error, navigate])
 
     if (isLoading)
         return <Loader />;

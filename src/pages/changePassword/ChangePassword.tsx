@@ -7,12 +7,13 @@ import FormSubmitButton from "../../components/forms/ui/formSubmitButton/FormSub
 import { useChangePasswordMutation } from "../../redux/features/api/userApi/userApi";
 import { useNavigate } from "react-router-dom";
 import Loader from "../../components/common/loader/Loader";
+import validation from "./validation";
 
 // initialState
 const initialState: InitialState = {
     currentPassword: "",
     newPassword: ""
-};
+}
 
 export default function ChangePassword() {
     const navigate = useNavigate();
@@ -29,29 +30,22 @@ export default function ChangePassword() {
         setFormData({
             ...formData,
             [name]: value
-        });
-    };
+        })
+    }
 
     // handling form submit
     const onFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
         e.preventDefault();
         setErrorMessage("");
 
-        if (!currentPassword)
-            return setErrorMessage("Current password is required.");
+        // get frontend form validation error message
+        const frontendValidationErrorMessage = validation(currentPassword, newPassword);
 
-        if (!newPassword)
-            return setErrorMessage("New password is required.");
+        // set frontend form validation error message
+        if (frontendValidationErrorMessage)
+            return setErrorMessage(frontendValidationErrorMessage);
 
-        if (currentPassword === newPassword)
-            return setErrorMessage("New password must be different.");
-
-        if (newPassword.length < 6)
-            return setErrorMessage("New password should be at least 6 characters long.");
-
-        if (newPassword.length > 40)
-            return setErrorMessage("Password is too long.");
-
+        // update password
         changePassword(formData);
     };
 
@@ -63,17 +57,18 @@ export default function ChangePassword() {
 
         if (error) {
             if ("status" in error) {
-                const errMsgJSONString = 'error' in error ?
-                    error.error : JSON.stringify(error.data);
-
+                // get backend form validation error message
+                const errMsgJSONString = 'error' in error ? error.error : JSON.stringify(error.data);
                 const errMsgJSObj = JSON.parse(errMsgJSONString);
+
+                // set backend form validation error message
                 setErrorMessage(errMsgJSObj.message);
             }
         }
     }, [isSuccess, error, navigate]);
 
     if (isLoading)
-        return <Loader />
+        return <Loader />;
 
     return (
         <div className="mt-24 pb-8">

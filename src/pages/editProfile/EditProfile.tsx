@@ -10,6 +10,7 @@ import Label from "../../components/common/label/Label";
 import { useUpdateUserMutation } from "../../redux/features/api/userApi/userApi";
 import { useLocation, useNavigate } from "react-router-dom";
 import Loader from "../../components/common/loader/Loader";
+import validation from "./validation";
 
 export default function EditProfile() {
     const location = useLocation();
@@ -19,7 +20,7 @@ export default function EditProfile() {
         lastName: initiallastName,
         email: initialEmail,
         avatar: initialAvatar
-    } = location.state
+    } = location.state;
 
     // initialState
     const initialState: InitialState = {
@@ -27,7 +28,7 @@ export default function EditProfile() {
         lastName: initiallastName,
         email: initialEmail,
         avatar: initialAvatar
-    };
+    }
 
     const navigate = useNavigate();
     const [inputsData, setInputsData] = useState(initialState);
@@ -58,6 +59,13 @@ export default function EditProfile() {
         e.preventDefault();
         setErrorMessage("");
 
+        // get frontend form validation error message
+        const frontendValidationErrorMessage = validation(firstName, lastName, email);
+
+        // set frontend form validation error message
+        if (frontendValidationErrorMessage)
+            return setErrorMessage(frontendValidationErrorMessage);
+
         // Create a FormData object and append fields to it
         const formData = new FormData();
         formData.append("firstName", firstName);
@@ -65,6 +73,7 @@ export default function EditProfile() {
         formData.append("email", email);
         formData.append("avatar", avatar);
 
+        // update user
         updateUser({ userId, formData });
     }
 
@@ -75,10 +84,11 @@ export default function EditProfile() {
 
         if (error) {
             if ("status" in error) {
-                const errMsgJSONString = 'error' in error ?
-                    error.error : JSON.stringify(error.data);
-
+                // get backend form validation error message
+                const errMsgJSONString = 'error' in error ? error.error : JSON.stringify(error.data);
                 const errMsgJSObj = JSON.parse(errMsgJSONString);
+
+                // set backend form validation error message
                 setErrorMessage(errMsgJSObj.message);
             }
         }

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 import MyToursCard from "../../components/cards/myToursCard/MyToursCard";
 import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 import Loader from "../../components/common/loader/Loader";

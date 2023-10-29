@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useGetToursByTagNameQuery } from "../../redux/features/api/tourApi/tourApi"
+import { useGetToursByTagNameQuery } from "../../redux/features/api/tourApi/tourApi";
 import Loader from "../../components/common/loader/Loader";
 import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 import ToursCard from "../../components/cards/toursCard/ToursCard";

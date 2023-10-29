@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useGetRelatedToursQuery } from "../../redux/features/api/tourApi/tourApi"
+import { useGetRelatedToursQuery } from "../../redux/features/api/tourApi/tourApi";
 import { RelatedToursProps } from "./types";
 import RelatedToursCard from "../../components/cards/relatedToursCard/RelatedToursCard";
 import Loader from "../../components/common/loader/Loader";
@@ -12,7 +12,7 @@ export default function RelatedTours({ tags, currentTourId }: RelatedToursProps)
     let content;
 
     if (isLoading)
-        content = <Loader />
+        content = <Loader />;
 
     if (!isLoading && isError)
         content = <ErrorMessage message='Something went wrong!' />;
