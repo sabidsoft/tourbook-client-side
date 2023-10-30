@@ -32,8 +32,8 @@ export default function ChangePassword() {
         setFormData({
             ...formData,
             [name]: value
-        })
-    }
+        });
+    };
 
     // handling form submit
     const onFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
@@ -104,5 +104,5 @@ export default function ChangePassword() {
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};

@@ -32,24 +32,24 @@ export default function EditTour() {
     // title handler
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value)
-    }
+    };
 
     // description handler
     const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setDescription(e.target.value);
-    }
+    };
 
     // image handler
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setImage(e.target.files[0]);
         }
-    }
+    };
 
     // tagInput handler
     const handleTagInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTagInput(e.target.value);
-    }
+    };
 
     // handle addTag
     const addTag = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -78,14 +78,14 @@ export default function EditTour() {
                 setErrorMessage("");
             }
         }
-    }
+    };
 
     // handle remove tag
     const removeTag = (removalTag: string) => {
         const updatedTags = tags.filter(tag => tag !== removalTag);
         setTags(updatedTags);
         setErrorMessage("");
-    }
+    };
 
     // form submit handler
     const handleSubmit = (e: FormEvent) => {
@@ -106,7 +106,7 @@ export default function EditTour() {
         formData.append("tags", JSON.stringify(tags));
 
         updateTour({ tourId, formData });
-    }
+    };
 
     useEffect(() => {
         if (isSuccess) {
@@ -214,5 +214,5 @@ export default function EditTour() {
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};

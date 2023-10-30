@@ -4,7 +4,7 @@ import { useGetTourQuery } from "../../redux/features/api/tourApi/tourApi";
 import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
 import { LuCalendarDays } from "react-icons/lu";
 import moment from "moment";
-import RelatedTours from "../relatedTours/RelatedTours";
+import RelatedTours from "../../components/relatedTours/RelatedTours";
 import LikeTour from "../../components/common/likeTour/LikeTour";
 import useTitle from "../../hooks/useTitle";
 
@@ -19,7 +19,7 @@ export default function SingleTour() {
         return <Loader />;
 
     if (!isLoading && isError)
-        return <ErrorMessage message='There was an error!' />;
+        return <ErrorMessage message="Something went wrong." />;
 
     return (
         <div className="sm:w-[80%] flex flex-col justify-center items-center lg:flex-row lg:justify-between lg:items-start mx-auto px-5 sm:px-0">
@@ -63,12 +63,12 @@ export default function SingleTour() {
                     {tour?.description}
                 </p>
             </div>
-            <div className="w-[395px] lg:ml-5 mb-8">
+            <div className="w-full md:w-[395px] lg:ml-5 mb-8">
                 <RelatedTours
                     tags={tour?.tags || []}
                     currentTourId={tourId || ""}
                 />
             </div>
         </div>
-    )
-}
+    );
+};

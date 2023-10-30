@@ -24,11 +24,11 @@ export default function ToursByTagName() {
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
-    }
+    };
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value);
-    }
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -36,7 +36,7 @@ export default function ToursByTagName() {
         if (searchText) {
             navigate(`/tours/search/?search_query=${searchText}`);
         }
-    }
+    };
 
     let content;
 
@@ -44,7 +44,7 @@ export default function ToursByTagName() {
         content = <Loader />;
 
     if (!isLoading && isError)
-        content = <ErrorMessage message='There was an error!' />;
+        content = <ErrorMessage message="Something went wrong." />;
 
     if (!isLoading && !isError && tours && tours.length === 0)
         content = <ErrorMessage message='Opps! There is no more tour available with the tag.' />;
@@ -83,5 +83,5 @@ export default function ToursByTagName() {
             </div>
             {content}
         </div>
-    )
-}
+    );
+};

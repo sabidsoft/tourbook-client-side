@@ -67,5 +67,5 @@ export default function SignUpForm({
             {errorMessage && <FormErrorMessage message={errorMessage} />}
             <FormSubmitButton value="SIGN UP" />
         </form>
-    )
-}
+    );
+};

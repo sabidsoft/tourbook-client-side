@@ -23,4 +23,4 @@ export default function useInitialAuthCheck() {
     }, [dispatch]);
 
     return initialAuthChecked;
-}
+};

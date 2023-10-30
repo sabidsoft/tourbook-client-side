@@ -23,12 +23,12 @@ export default function Home() {
     // Handle page change
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
-    }
+    };
 
     // Handle title change
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value);
-    }
+    };
 
     // handle submit
     const handleSubmit = (e: React.FormEvent) => {
@@ -37,7 +37,7 @@ export default function Home() {
         if (searchText) {
             navigate(`/tours/search?search_query=${searchText}`);
         }
-    }
+    };
 
     let content;
 
@@ -45,7 +45,7 @@ export default function Home() {
         content = <Loader />;
 
     if (!isLoading && isError)
-        content = <ErrorMessage message='There was an error!' />;
+        content = <ErrorMessage message="Something went wrong." />;
 
     if (!isLoading && !isError && tours && tours.length === 0)
         content = <ErrorMessage message='Opps! Sorry! There is no tour available.' />;
@@ -53,7 +53,7 @@ export default function Home() {
     if (!isLoading && !isError && tours && tours.length > 0)
         content =
             <>
-                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-4 mx-5 md:mx-0">
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-4 gap-y-8 mx-5 md:mx-0">
                     {
                         tours && tours
                             .map(tour => <ToursCard key={tour._id} tour={tour} />)
@@ -82,5 +82,5 @@ export default function Home() {
             </div>
             {content}
         </div>
-    )
-}
+    );
+};

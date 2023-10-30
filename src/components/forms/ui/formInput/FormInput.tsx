@@ -9,7 +9,6 @@ export default function FormInput({
     className,
     onChange
 }: FormInputProps) {
-
     return (
         <input
             required
@@ -21,5 +20,5 @@ export default function FormInput({
             className={className}
             placeholder={placeholder}
         />
-    )
-}
+    );
+};

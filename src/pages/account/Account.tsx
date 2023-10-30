@@ -19,7 +19,7 @@ export default function Account() {
         return <Loader />;
 
     if (!isLoading && isError)
-        return <ErrorMessage message="Opps! Something went wrong." />;
+        return <ErrorMessage message="Something went wrong." />;
 
     return (
         <div className="mx-5 md:mx-0 mt-32 mb-8">
@@ -64,5 +64,5 @@ export default function Account() {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

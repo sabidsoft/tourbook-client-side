@@ -5,5 +5,5 @@ export default function Loader() {
         <div className="h-screen flex justify-center items-center">
             <ScaleLoader color="#267CB5" />
         </div>
-    )
-}
+    );
+};

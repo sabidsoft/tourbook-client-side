@@ -17,7 +17,7 @@ export default function ForgotPassword() {
 
     const handleEmailChange = (e: ChangeEvent<HTMLInputElement>): void => {
         setEmail(e.target.value);
-    }
+    };
 
     // handling form submit
     const onFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
@@ -49,7 +49,7 @@ export default function ForgotPassword() {
                 setErrorMessage(errMsgJSObj.message);
             }
         }
-    }, [isSuccess, error])
+    }, [isSuccess, error]);
 
     if (isLoading)
         return <Loader />;
@@ -86,5 +86,5 @@ export default function ForgotPassword() {
                 }
             </div>
         </div>
-    )
-}
+    );
+};

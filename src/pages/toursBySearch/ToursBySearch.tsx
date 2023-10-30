@@ -24,11 +24,11 @@ export default function ToursBySearch() {
 
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
-    }
+    };
 
     const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchText(e.target.value);
-    }
+    };
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -36,7 +36,7 @@ export default function ToursBySearch() {
         if (searchText) {
             navigate(`/tours/search/?search_query=${searchText}`);
         }
-    }
+    };
 
     let content;
 
@@ -44,7 +44,7 @@ export default function ToursBySearch() {
         content = <Loader />;
 
     if (!isLoading && isError)
-        content = <ErrorMessage message='Something went wrong!' />;
+        content = <ErrorMessage message="Something went wrong." />;
 
     if (!isLoading && !isError && tours && tours.length === 0)
         content = <ErrorMessage message='Opps! There is no tour available with your search value.' />;
@@ -83,5 +83,5 @@ export default function ToursBySearch() {
             </div>
             {content}
         </div>
-    )
-}
+    );
+};

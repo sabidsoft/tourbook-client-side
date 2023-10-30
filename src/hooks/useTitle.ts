@@ -7,7 +7,7 @@ const useTitle = (title: string): void => {
         } else {
             document.title = `${title} | Tourbook`;
         }
-    }, [title])
-}
+    }, [title]);
+};
 
 export default useTitle;

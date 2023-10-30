@@ -12,4 +12,4 @@ export default function PrivateRoute({ children }: PrivateRouteProps) {
             state={{ from: location }}
             replace
         />;
-}
+};

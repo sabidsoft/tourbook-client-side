@@ -9,7 +9,7 @@ export default function NotFound() {
     // Go backward
     const handleGoBack = () => {
         navigate(-1)
-    }
+    };
 
     return (
         <div className="flex justify-center items-center pb-5">
@@ -23,5 +23,5 @@ export default function NotFound() {
                 />
             </div>
         </div>
-    )
-}
+    );
+};

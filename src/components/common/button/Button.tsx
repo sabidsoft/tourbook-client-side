@@ -17,5 +17,5 @@ export default function Button({ buttonName, onClick }: ButtonProps) {
         >
             {buttonName}
         </button>
-    )
-}
+    );
+};

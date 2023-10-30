@@ -8,5 +8,5 @@ export default function Label({ htmlFor, labelName }: LabelProps) {
         >
             {labelName}:
         </label>
-    )
-}
+    );
+};

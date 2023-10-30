@@ -21,24 +21,24 @@ export default function AddTour() {
     // title handler
     const handleTitleChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.target.value)
-    }
+    };
 
     // description handler
     const handleDescriptionChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setDescription(e.target.value);
-    }
+    };
 
     // image handler
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             setImage(e.target.files[0]);
         }
-    }
+    };
 
     // tagInput handler
     const handleTagInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTagInput(e.target.value);
-    }
+    };
 
     // handle add tag
     const addTag = (e: KeyboardEvent<HTMLInputElement>) => {
@@ -67,14 +67,14 @@ export default function AddTour() {
                 setErrorMessage("");
             }
         }
-    }
+    };
 
     // handle remove tag
     const removeTag = (removalTag: string) => {
         const updatedTags = tags.filter(tag => tag !== removalTag);
         setTags(updatedTags);
         setErrorMessage("");
-    }
+    };
 
     // form submit handler
     const handleSubmit = (e: FormEvent) => {
@@ -96,7 +96,7 @@ export default function AddTour() {
 
         // create new tour
         createTour(formData);
-    }
+    };
 
     useEffect(() => {
         if (isSuccess) {
@@ -113,13 +113,13 @@ export default function AddTour() {
                 setErrorMessage(errMsgJSObj.message);
             }
         }
-    }, [isSuccess, error, navigate])
+    }, [isSuccess, error, navigate]);
 
     if (isLoading)
         return <Loader />;
 
     if (!isLoading && isError)
-        return <ErrorMessage message="There is an error occured!" />;
+        return <ErrorMessage message="Something went wrong." />;
 
     return (
         <AddTourForm
@@ -137,5 +137,5 @@ export default function AddTour() {
             handleTagInputChange={handleTagInputChange}
             addTag={addTag}
         />
-    )
-}
+    );
+};

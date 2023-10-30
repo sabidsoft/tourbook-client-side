@@ -5,7 +5,7 @@ export const apiSlice = createApi({
     reducerPath: 'tourbookApi',
     tagTypes: ['User', 'Tours', 'Tour', 'ToursByUser', 'ToursBySearch', 'ToursByTag', 'RelatedTours'],
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:8080',
+        baseUrl: 'https://tourbook-backend.vercel.app',
         prepareHeaders: async (headers, { getState }) => {
             const token = (getState() as RootState).auth.token;
             if (token) {

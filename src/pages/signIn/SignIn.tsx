@@ -37,7 +37,7 @@ export default function SignIn() {
 
         // login user
         signIn({ email, password });
-    }
+    };
 
     // handling input elements values
     const onInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -46,8 +46,8 @@ export default function SignIn() {
         setFormData({
             ...formData,
             [name]: value
-        })
-    }
+        });
+    };
 
     useEffect(() => {
         if (data) {
@@ -64,7 +64,7 @@ export default function SignIn() {
                 setErrorMessage(errMsgJSObj.message);
             }
         }
-    }, [data, error, navigate, location.state?.from?.pathname])
+    }, [data, error, navigate, location.state?.from?.pathname]);
 
     if (isLoading) {
         return <Loader />;
@@ -79,5 +79,5 @@ export default function SignIn() {
             onFormSubmit={onFormSubmit}
             onInputChange={onInputChange}
         />
-    )
-}
+    );
+};

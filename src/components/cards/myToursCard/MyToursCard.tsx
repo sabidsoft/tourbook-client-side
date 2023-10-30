@@ -14,7 +14,7 @@ export default function MyToursCard({ tour }: MyToursCardProps) {
     // handle delete tour
     const handleDeleteTour = (tourId: string) => {
         deleteTour(tourId);
-    }
+    };
 
     if (isLoading)
         return <Loader />;
@@ -35,13 +35,13 @@ export default function MyToursCard({ tour }: MyToursCardProps) {
                         {title}
                     </h2>
                     <p className="">
-                        {`${description.slice(0, 25)}... `}
+                        {`${description.slice(0, 70)}... `}
                         <Link
                             to={`/tours/${_id}`}
                             title="View Details"
                             className="text-[#267CB5] hover:text-[#2e5f80] font-medium hover:underline"
                         >
-                            View Details
+                            See More
                         </Link>
                     </p>
                 </div>
@@ -66,5 +66,5 @@ export default function MyToursCard({ tour }: MyToursCardProps) {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};

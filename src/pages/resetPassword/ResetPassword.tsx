@@ -36,8 +36,8 @@ export default function ResetPassword() {
         setFormData({
             ...formData,
             [name]: value
-        })
-    }
+        });
+    };
 
     // handling form submit
     const onFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
@@ -70,7 +70,7 @@ export default function ResetPassword() {
                 setErrorMessage(errMsgJSObj.message);
             }
         }
-    }, [isSuccess, error])
+    }, [isSuccess, error]);
 
     if (isLoading)
         return <Loader />;
@@ -124,5 +124,5 @@ export default function ResetPassword() {
                 }
             </div>
         </div>
-    )
-}
+    );
+};

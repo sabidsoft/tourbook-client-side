@@ -17,5 +17,5 @@ export default function FormSubmitButton({ value }: FormSubmitButtonProps) {
                 duration-300
             "
         />
-    )
-}
+    );
+};

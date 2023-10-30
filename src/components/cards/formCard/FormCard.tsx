@@ -61,5 +61,5 @@ export default function FormCard({
                 />
             </div>
         </div>
-    )
-}
+    );
+};

@@ -29,4 +29,4 @@ export default function FormErrorMessage({ message }: FormErrorMessageProps) {
             </div>
         </div>
     );
-}
+};

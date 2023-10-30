@@ -2,7 +2,6 @@ import { RxCross2 } from "react-icons/rx";
 import { FormTagChipProps } from "./types";
 
 export default function FormTagChip({ tag, removeTag }: FormTagChipProps) {
-
     return (
         <div
             key={tag}
@@ -34,5 +33,5 @@ export default function FormTagChip({ tag, removeTag }: FormTagChipProps) {
                 <RxCross2 />
             </button>
         </div>
-    )
-}
+    );
+};

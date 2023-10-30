@@ -32,8 +32,8 @@ export default function SignUp() {
         setFormData({
             ...formData,
             [name]: value
-        })
-    }
+        });
+    };
 
     // handling form submit
     const onFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
@@ -66,7 +66,7 @@ export default function SignUp() {
                 setErrorMessage(errMsgJSObj.message);
             }
         }
-    }, [isSuccess, error, navigate])
+    }, [isSuccess, error, navigate]);
 
     if (isLoading) {
         return <Loader />;
@@ -84,5 +84,5 @@ export default function SignUp() {
             onFormSubmit={onFormSubmit}
             onInputChange={onInputChange}
         />
-    )
-}
+    );
+};

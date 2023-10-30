@@ -17,5 +17,5 @@ export default function RelatedToursCard({ tour }: RelatedToursCardProps) {
                 <span className="block text-sm">{moment(createdAt).fromNow()}</span>
             </div>
         </div>
-    )
-}
+    );
+};

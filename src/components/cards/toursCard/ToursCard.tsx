@@ -44,16 +44,16 @@ export default function ToursCard({
                     {title}
                 </h2>
                 <p className="text-[#55545D] text-justify mb-12">
-                    {`${description.slice(0, 80)}... `}
+                    {`${description.slice(0, 70)}... `}
                     <Link
                         to={`/tours/${_id}`}
                         title="View Details"
                         className="text-[#267CB5] hover:text-[#2e5f80] font-medium hover:underline"
                     >
-                        View Details
+                        See More
                     </Link>
                 </p>
             </div>
         </div>
-    )
-}
+    );
+};

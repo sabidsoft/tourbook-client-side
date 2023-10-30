@@ -56,5 +56,5 @@ export default function Pagination({ totalPage, currentPage, handlePageChange }:
                 {">"}
             </button>
         </>
-    )
-}
+    );
+};

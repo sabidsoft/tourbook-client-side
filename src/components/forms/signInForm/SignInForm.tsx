@@ -45,5 +45,5 @@ export default function SignInForm({
             {errorMessage && <FormErrorMessage message={errorMessage} />}
             <FormSubmitButton value="SIGN IN" />
         </form>
-    )
-}
+    );
+};

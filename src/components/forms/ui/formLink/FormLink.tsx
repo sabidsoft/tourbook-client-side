@@ -15,5 +15,5 @@ export default function FormLink({ to, text }: FormLinkProps) {
         >
             {text}
         </Link>
-    )
-}
+    );
+};

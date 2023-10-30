@@ -23,7 +23,7 @@ export default function MyTours() {
     // handle page change
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
-    }
+    };
 
     let content;
 
@@ -31,7 +31,7 @@ export default function MyTours() {
         content = <Loader />;
 
     if (!isLoading && isError)
-        content = <ErrorMessage message="There is an error occured!" />;
+        content = <ErrorMessage message="Something went wrong." />;
 
     if (!isLoading && !isError && tours && tours.length === 0)
         content = (
@@ -76,5 +76,5 @@ export default function MyTours() {
                 {content}
             </div>
         </div>
-    )
-}
+    );
+};

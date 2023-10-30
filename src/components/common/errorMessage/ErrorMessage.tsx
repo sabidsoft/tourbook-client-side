@@ -21,4 +21,4 @@ export default function ErrorMessage({ message }: ErrorMessageProps) {
             {message}
         </div>
     );
-}
+};

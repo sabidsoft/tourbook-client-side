@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useGetRelatedToursQuery } from "../../redux/features/api/tourApi/tourApi";
 import { RelatedToursProps } from "./types";
-import RelatedToursCard from "../../components/cards/relatedToursCard/RelatedToursCard";
-import Loader from "../../components/common/loader/Loader";
-import ErrorMessage from "../../components/common/errorMessage/ErrorMessage";
+import RelatedToursCard from "../cards/relatedToursCard/RelatedToursCard";
+import Loader from "../common/loader/Loader";
+import ErrorMessage from "../common/errorMessage/ErrorMessage";
 
 export default function RelatedTours({ tags, currentTourId }: RelatedToursProps) {
     const { data, isLoading, isError } = useGetRelatedToursQuery({ tags, currentTourId });
@@ -41,5 +41,5 @@ export default function RelatedTours({ tags, currentTourId }: RelatedToursProps)
             <hr className="mb-2" />
             {content}
         </>
-    )
-}
+    );
+};

@@ -72,5 +72,5 @@ export default function LikeTour({ likedUserIds, tourId }: LikeTourProps) {
                 {likedUserIds.length > 1 ? " Likes" : " Like"}
             </span>
         </button>
-    )
-}
+    );
+};

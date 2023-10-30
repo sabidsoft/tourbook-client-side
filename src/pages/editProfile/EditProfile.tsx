@@ -54,7 +54,7 @@ export default function EditProfile() {
                 ...inputsData,
                 [name]: value
             });
-    }
+    };
 
     // handling form submit
     const onFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
@@ -177,5 +177,5 @@ export default function EditProfile() {
                 </form>
             </div>
         </div>
-    )
-}
+    );
+};
