@@ -29,7 +29,7 @@ export default function MyToursCard({ tour }: MyToursCardProps) {
                 alt={title}
                 className="w-full h-[200px] md:w-[35%] md:h-[150px] object-cover rounded-t-lg md:rounded-none md:rounded-l-lg"
             />
-            <div className="w-full md:w-[65%] flex justify-between items-center px-8 py-8 md:py-0">
+            <div className="w-full md:w-[65%] flex justify-between items-center px-4 py-8 md:py-0">
                 <div>
                     <h2 className="capitalize text-xl text-[#404756] font-semibold">
                         {title}
@@ -45,7 +45,7 @@ export default function MyToursCard({ tour }: MyToursCardProps) {
                         </Link>
                     </p>
                 </div>
-                <div className="flex">
+                <div className="flex pl-4">
                     <AiFillDelete
                         size={24}
                         color="#DE4C3A"
